@@ -1,74 +1,81 @@
 export const resumeData = {
-  name: 'Hitesh',
-  title: 'Creative Technologist & Full-Stack Engineer',
-  tagline: 'Crafting living digital worlds, performant web applications, and elegant human interfaces.',
-  location: 'Earth · Remote Worldwide',
-  email: 'hello@hitesh.dev',
-  github: 'https://github.com',
-  linkedin: 'https://linkedin.com',
+  name: 'Hitesh Tomar',
+  title: 'B.Tech in AI & ML · Full-Stack & Applied AI Engineer',
+  tagline: 'Engineering multi-agent systems, digital forensics intelligence, and resilient full-stack architectures.',
+  location: 'Greater Delhi Area, India',
+  email: 'hitesh28tomar@gmail.com',
+  github: 'https://github.com/HiteshTomar2004',
+  linkedin: 'https://www.linkedin.com/in/hitesh-tomar-b31059344',
 
-  about: `I bridge the gap between rigorous software engineering and evocative creative craftsmanship. With a deep passion for modern web technologies, real-time 3D graphics, and thoughtful user experiences, I build digital experiences that feel tangible, alive, and memorable.`,
+  about: `I am an AI & Machine Learning undergraduate and full-stack developer passionate about building applied AI systems, multi-agent architectures, and data-driven platforms. From designing digital footprint intelligence engines and multi-agent LangGraph applications to architecting high-throughput backend APIs and financial analytics ETL pipelines, I focus on building systems that solve complex real-world challenges with rigorous engineering and intuitive user interfaces.`,
 
   experience: [
     {
-      period: '2023 — Present',
-      role: 'Senior Full-Stack & Creative Developer',
-      company: 'Autonomous Craft Lab',
-      location: 'Remote',
+      period: 'Sept 2025 — Present',
+      role: 'Technical Team Member',
+      company: 'ACTS-EDC',
+      location: 'Delhi, India',
       highlights: [
-        'Architected high-performance web applications using React, TypeScript, and Three.js with 60fps rendering.',
-        'Spearheaded the design and implementation of design systems bridging 3D WebGL scenes and accessible 2D interfaces.',
-        'Reduced client bundle load times by 45% through aggressive asset optimization and code splitting.'
+        'Collaborating on full-stack web platforms and community initiatives, building high-performance interactive interfaces and hackathon portals.',
+        'Engineered responsive React and Vite web experiences with modern state management, component architecture, and deployment workflows.',
+        'Coordinated technical events, hackathons, and developer engagement initiatives across college ecosystems.'
       ]
     },
     {
-      period: '2021 — 2023',
-      role: 'Frontend Engineer & UI Architect',
-      company: 'Digital Citadel Studios',
-      location: 'Remote',
+      period: 'June 2026 — Aug 2026',
+      role: 'Data Analyst Intern — FinTech',
+      company: 'Bluestock™',
+      location: 'Delhi, India',
       highlights: [
-        'Developed complex stateful web dashboards and interactive visualizations serving 100k+ active users.',
-        'Collaborated closely with product designers to implement smooth micro-interactions, responsive typography, and accessibility standards.',
-        'Mentored junior engineers and led code review practices across frontend repositories.'
-      ]
-    },
-    {
-      period: '2019 — 2021',
-      role: 'Software Engineer',
-      company: 'Nexus Techworks',
-      location: 'On-site',
-      highlights: [
-        'Built full-stack web applications with Node.js, Express, React, and PostgreSQL.',
-        'Integrated REST and GraphQL APIs with automated unit and end-to-end test pipelines.',
-        'Maintained 99.9% uptime for core user authentication and payment processing services.'
+        'Built an end-to-end Mutual Fund Analytics Platform covering automated data ingestion, cleaning, ETL, SQLite integration, and financial analytics.',
+        'Analyzed historical NAV, investor transactions, SIP inflows, AUM, and portfolio holdings across 40+ mutual fund schemes.',
+        'Implemented quantitative risk and performance metrics: CAGR, Sharpe Ratio, Sortino Ratio, Alpha, Beta, Maximum Drawdown, Tracking Error, VaR, and CVaR.',
+        'Developed advanced investor cohort analytics, SIP continuity modeling, portfolio concentration (HHI), and rule-based fund recommendations.',
+        'Designed an interactive 5-page Power BI business intelligence dashboard with dynamic slicers, KPIs, and drill-through NAV detail pages.'
       ]
     }
   ],
 
   skillGarden: [
     {
-      category: 'Languages',
-      skills: ['JavaScript (ESNext)', 'TypeScript', 'Python', 'GLSL / Shaders', 'HTML5 / Modern CSS', 'SQL']
+      category: 'Languages & Core',
+      skills: ['Python 3.11+', 'JavaScript (ESNext)', 'C / C++', 'SQL', 'HTML5 / CSS3', 'Go (Learning)']
     },
     {
-      category: 'Frameworks & Web',
-      skills: ['React 18 / 19', 'Next.js', 'Vite', 'Tailwind CSS', 'Node.js', 'FastAPI']
+      category: 'AI, Agents & Data Science',
+      skills: ['LangGraph (Multi-Agent)', 'Google Gemini API', 'Pandas', 'NumPy', 'NetworkX', 'Anomaly Detection', 'GeoPy', 'EDA & Statistics']
     },
     {
-      category: '3D, Motion & Creative',
-      skills: ['Three.js', 'React Three Fiber', 'Drei', 'Blender', 'GSAP', 'Web Audio API', 'Canvas 2D']
+      category: 'Frameworks & Web Development',
+      skills: ['React 18 / 19', 'Vite', 'Node.js', 'Express', 'FastAPI', 'Flask', 'Tailwind CSS', 'Prisma ORM', 'Socket.IO (WebSockets)', 'Server-Sent Events (SSE)']
     },
     {
-      category: 'Tools & Infrastructure',
-      skills: ['Git / GitHub', 'Docker', 'PostgreSQL', 'Redis', 'Vercel / Cloudflare', 'Linux / Bash']
+      category: 'Databases, DevOps & Tools',
+      skills: ['SQLite', 'PostgreSQL', 'Docker', 'Power BI', 'Twilio API', 'Git & GitHub', 'Jupyter', 'Linux / Bash', 'Railway', 'Render']
     }
   ],
 
   education: [
     {
-      degree: 'Bachelor of Technology in Computer Science & Engineering',
-      institution: 'University Institute of Engineering & Technology',
-      period: 'Graduated with Honors'
+      degree: 'Bachelor of Technology (B.Tech.) in Artificial Intelligence & Machine Learning',
+      institution: 'Guru Gobind Singh Indraprastha University (GGSIPU)',
+      period: '2024 — 2028'
+    },
+    {
+      degree: 'Senior Secondary Certificate (12th Standard)',
+      institution: 'M.M. Public School - India',
+      period: 'Completed'
+    },
+    {
+      degree: 'Secondary School Certificate (10th Standard)',
+      institution: 'Mother Divine Public School - India',
+      period: 'Completed'
     }
+  ],
+
+  certifications: [
+    'Winter Training Programme on Remote Sensing and GIS',
+    'Data Structures and Algorithms (DSA) with C/C++'
   ]
 }
+
