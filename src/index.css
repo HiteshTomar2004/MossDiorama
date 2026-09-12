@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --font-cinzel: "Cinzel", serif;
+  --font-cinzel-dec: "Cinzel Decorative", serif;
+  --font-alegreya: "Alegreya", serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+
+  --color-grotto-950: #060a08;
+  --color-grotto-900: #0b140f;
+  --color-grotto-850: #101c15;
+  --color-grotto-800: #16261d;
+  --color-grotto-700: #1e3327;
+
+  --color-spore-mint: #82d8b4;
+  --color-spore-glow: #a8e6cf;
+  --color-spore-dark: #3a7558;
+
+  --color-amber-fire: #df9d52;
+  --color-amber-glow: #ffc278;
+  --color-amber-spark: #ffe5b4;
+
+  --color-scarf-crimson: #c93b3b;
+  --color-scarf-dark: #912424;
+
+  --color-pale-bone: #eae2cf;
+  --color-bone-muted: #b0a894;
+}
+
+:root {
+  color-scheme: dark;
+  background-color: var(--color-grotto-950);
+  color: var(--color-pale-bone);
+  font-family: var(--font-alegreya), serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #060a08;
+  user-select: none;
+}
+
+/* Custom scrollbar for Silksong modal drawers */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #09120c;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e3828;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2f543c;
+}
+
+/* Subtle Silksong filigree border utility */
+.silksong-border {
+  border: 1px solid rgba(130, 216, 180, 0.2);
+  box-shadow: 0 0 15px rgba(11, 20, 15, 0.8), inset 0 0 15px rgba(82, 183, 136, 0.05);
+}
+
+.silksong-card {
+  background: linear-gradient(135deg, rgba(16, 28, 21, 0.92) 0%, rgba(9, 16, 12, 0.96) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(130, 216, 180, 0.22);
+}
+
+.silksong-glow {
+  text-shadow: 0 0 12px rgba(223, 157, 82, 0.6);
+}
+
+.spore-glow-text {
+  text-shadow: 0 0 10px rgba(130, 216, 180, 0.5);
+}
