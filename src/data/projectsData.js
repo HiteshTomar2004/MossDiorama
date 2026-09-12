@@ -84,6 +84,18 @@ export const projectsData = [
     rune: '◈ VII'
   },
   {
+    id: 'ndwi-sentinel2-yamuna',
+    title: 'AI Satellite Surface Water Extraction (Yamuna Basin)',
+    category: 'Full-Stack / AI',
+    summary: 'Cloud geospatial pipeline in Google Earth Engine and QGIS using Sentinel-2 NDWI spectral analysis and focal-mode filtering.',
+    description: 'A remote sensing and geospatial data engineering pipeline built for the India Space Academy (ISA). Ingests Sentinel-2 multispectral satellite imagery in Google Earth Engine (GEE), calculates the Normalized Difference Water Index (NDWI) across green and NIR bands, applies spatial focal-mode filtering to remove urban speckle noise, and vectorizes refined masks in QGIS to quantify the Yamuna River water surface at 6.90027 km².',
+    techStack: ['Google Earth Engine', 'Sentinel-2', 'QGIS', 'NDWI', 'JavaScript / Python', 'Remote Sensing', 'Spatial Analysis'],
+    githubUrl: 'https://github.com/HiteshTomar2004/NDWI-Project-for-ISA',
+    liveUrl: 'https://github.com/HiteshTomar2004/NDWI-Project-for-ISA',
+    accentColor: '#52b788',
+    rune: '◈ VIII'
+  },
+  {
     id: 'moss-grotto-3d',
     title: 'The Moss Grotto 3D Diorama',
     category: 'Creative / 3D',
@@ -93,6 +105,6 @@ export const projectsData = [
     githubUrl: 'https://github.com/HiteshTomar2004',
     liveUrl: '#',
     accentColor: '#52b788',
-    rune: '◈ VIII'
+    rune: '◈ IX'
   }
 ]

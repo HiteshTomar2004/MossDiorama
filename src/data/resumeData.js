@@ -46,6 +46,18 @@ export const resumeData = {
         'Engineered responsive React and Vite web experiences with modern state management, component architecture, and deployment workflows.',
         'Coordinated technical events, hackathons, and developer engagement initiatives across college ecosystems.'
       ]
+    },
+    {
+      period: 'Jan 2025 — Feb 2025',
+      role: 'Remote Sensing & GIS Intern',
+      company: 'India Space Academy (ISA)',
+      location: 'Delhi, India',
+      highlights: [
+        'Built an AI-assisted surface water extraction pipeline using Sentinel-2 multispectral imagery in Google Earth Engine (GEE) to map the Yamuna River basin.',
+        'Calculated Normalized Difference Water Index (NDWI) using Green (B3) and NIR (B8) bands to mathematically isolate water bodies from surrounding land and vegetation.',
+        'Applied spatial neighborhood focal-mode filtering to aggressively eliminate high-frequency speckle noise and misclassified urban shadow pixels.',
+        'Exported high-resolution GeoTIFF masks and conducted vector spatial analysis in QGIS, generating vector polygons and calculating total water surface area at 6.90027 km².'
+      ]
     }
   ],
 
@@ -56,7 +68,7 @@ export const resumeData = {
     },
     {
       category: 'AI, Agents & Data Science',
-      skills: ['TinyML', 'TensorFlow Lite Micro', 'ESP32-S3 Edge AI', 'INT8 Quantization', 'LangGraph (Multi-Agent)', 'Google Gemini API', 'Pandas', 'NumPy', 'NetworkX', 'Anomaly Detection', 'GeoPy', 'EDA & Statistics']
+      skills: ['TinyML', 'TensorFlow Lite Micro', 'ESP32-S3 Edge AI', 'Google Earth Engine (GEE)', 'Remote Sensing & GIS', 'INT8 Quantization', 'LangGraph (Multi-Agent)', 'Google Gemini API', 'Pandas', 'NumPy', 'NetworkX', 'Anomaly Detection', 'GeoPy', 'EDA & Statistics']
     },
     {
       category: 'Frameworks & Web Development',
@@ -64,7 +76,7 @@ export const resumeData = {
     },
     {
       category: 'Databases, DevOps & Tools',
-      skills: ['SQLite', 'PostgreSQL', 'Docker', 'Power BI', 'LoRa (SX1278)', 'BLE Beacons', 'Node-RED', 'Twilio API', 'Git & GitHub', 'Jupyter', 'Linux / Bash', 'Railway', 'Render']
+      skills: ['SQLite', 'PostgreSQL', 'QGIS', 'GeoTIFF / GDAL', 'Docker', 'Power BI', 'LoRa (SX1278)', 'BLE Beacons', 'Node-RED', 'Twilio API', 'Git & GitHub', 'Jupyter', 'Linux / Bash', 'Railway', 'Render']
     }
   ],
 
@@ -87,7 +99,7 @@ export const resumeData = {
   ],
 
   certifications: [
-    'Winter Training Programme on Remote Sensing and GIS',
+    'Winter Training Programme on Remote Sensing and GIS — India Space Academy (ISA)',
     'Data Structures and Algorithms (DSA) with C/C++'
   ]
 }
