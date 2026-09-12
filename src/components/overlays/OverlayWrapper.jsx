@@ -15,10 +15,16 @@ export const OverlayWrapper = ({ title, symbol, children }) => {
   }, [closeOverlay])
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-black/75 backdrop-blur-md animate-fadeIn">
+    <div
+      onClick={closeOverlay}
+      role="dialog"
+      aria-modal="true"
+      aria-label={title}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-black/75 backdrop-blur-md animate-fadeIn cursor-pointer"
+    >
       {/* Container with Silksong stone card styling */}
       <div 
-        className="relative w-full max-w-4xl max-h-[88vh] flex flex-col silksong-card rounded-xl overflow-hidden shadow-2xl border border-spore-mint/30"
+        className="relative w-full max-w-4xl max-h-[88vh] flex flex-col silksong-card rounded-xl overflow-hidden shadow-2xl border border-spore-mint/30 cursor-default"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Ornate corner filigree accents */}

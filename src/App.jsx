@@ -13,6 +13,7 @@ import { Compass, Sparkles } from 'lucide-react'
 
 export function App() {
   const is3DMode = usePortfolioStore((s) => s.is3DMode)
+  const is2DDarkMode = usePortfolioStore((s) => s.is2DDarkMode)
   const activeOverlay = usePortfolioStore((s) => s.activeOverlay)
   const [showHint, setShowHint] = useState(true)
 
@@ -21,8 +22,16 @@ export function App() {
     return () => clearTimeout(timer)
   }, [])
 
+  const isLight2D = !is3DMode && !is2DDarkMode
+
   return (
-    <div className="relative min-h-screen bg-grotto-950 text-pale-bone font-['Alegreya'] selection:bg-amber-fire/30 selection:text-amber-glow">
+    <div
+      className={`relative min-h-screen transition-colors duration-300 ${
+        isLight2D
+          ? 'bg-[#fcfbf9] text-neutral-900 font-["Newsreader"] selection:bg-neutral-900 selection:text-white'
+          : 'bg-grotto-950 text-pale-bone font-["Alegreya"] selection:bg-amber-fire/30 selection:text-amber-glow'
+      }`}
+    >
       {/* HUD Navigation Header */}
       <NavigationHeader />
 

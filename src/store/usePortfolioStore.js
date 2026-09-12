@@ -52,6 +52,7 @@ export const usePortfolioStore = create((set) => ({
   activeDistrict: 'hearth',
   activeOverlay: null, // 'projects' | 'resume' | 'blog' | 'contact' | null
   is3DMode: true,
+  is2DDarkMode: false, // default false = White-Gray Light Mode in 2D; true = Moss Dark Mode
   audioPlaying: false,
   soundVolume: 0.4,
   cameraTarget: [0, 0, 0],
@@ -81,6 +82,8 @@ export const usePortfolioStore = create((set) => ({
   closeOverlay: () => set({ activeOverlay: null }),
 
   toggle3DMode: () => set((state) => ({ is3DMode: !state.is3DMode })),
+  toggle2DDarkMode: () => set((state) => ({ is2DDarkMode: !state.is2DDarkMode })),
+  set2DDarkMode: (val) => set({ is2DDarkMode: val }),
   toggleAudio: () => set((state) => ({ audioPlaying: !state.audioPlaying })),
   setSoundVolume: (volume) => set({ soundVolume: volume }),
   setHoveredObject: (obj) => set({ hoveredObject: obj }),
