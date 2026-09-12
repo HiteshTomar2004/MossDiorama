@@ -96,6 +96,18 @@ export const projectsData = [
     rune: '◈ VIII'
   },
   {
+    id: 'eeg-ssvep-bci-decoding',
+    title: 'EEG Brain-Computer Interface (ssVEP) Decoder',
+    category: 'Full-Stack / AI',
+    summary: 'End-to-end BCI machine learning pipeline decoding cognitive intent from 14-channel 128Hz EEG time-series using DSP and GroupKFold cross-validation.',
+    description: 'A neural data science and machine learning pipeline for continuous Brain-Computer Interface (BCI) decoding using Steady-State Visual Evoked Potentials (ssVEPs). Processes raw 14-channel 128 Hz EEG streams from 30 subjects with 1–30 Hz Butterworth filtering, Welch PSD spectral extraction (Alpha, Beta, Gamma), and occipital P100 peak latency proxies. Employs Random Forest, XGBoost, and strict Subject_ID StratifiedGroupKFold cross-validation to prevent skull-topography data leakage.',
+    techStack: ['Python', 'Digital Signal Processing', 'SciPy', 'Scikit-Learn', 'XGBoost', 'EEG / BCI', 'SHAP', 'Jupyter'],
+    githubUrl: 'https://github.com/HiteshTomar2004/ML_learning/tree/main/ssVEPs_Project',
+    liveUrl: 'https://github.com/HiteshTomar2004/ML_learning/tree/main/ssVEPs_Project',
+    accentColor: '#df9d52',
+    rune: '◈ IX'
+  },
+  {
     id: 'moss-grotto-3d',
     title: 'The Moss Grotto 3D Diorama',
     category: 'Creative / 3D',
@@ -105,6 +117,6 @@ export const projectsData = [
     githubUrl: 'https://github.com/HiteshTomar2004',
     liveUrl: '#',
     accentColor: '#52b788',
-    rune: '◈ IX'
+    rune: '◈ X'
   }
 ]

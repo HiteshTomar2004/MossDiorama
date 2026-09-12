@@ -68,7 +68,7 @@ export const resumeData = {
     },
     {
       category: 'AI, Agents & Data Science',
-      skills: ['TinyML', 'TensorFlow Lite Micro', 'ESP32-S3 Edge AI', 'Google Earth Engine (GEE)', 'Remote Sensing & GIS', 'INT8 Quantization', 'LangGraph (Multi-Agent)', 'Google Gemini API', 'Pandas', 'NumPy', 'NetworkX', 'Anomaly Detection', 'GeoPy', 'EDA & Statistics']
+      skills: ['TinyML', 'TensorFlow Lite Micro', 'ESP32-S3 Edge AI', 'EEG / BCI Decoding', 'Digital Signal Processing (DSP)', 'Google Earth Engine (GEE)', 'Remote Sensing & GIS', 'INT8 Quantization', 'LangGraph (Multi-Agent)', 'Google Gemini API', 'Pandas', 'NumPy', 'SciPy', 'NetworkX', 'Anomaly Detection', 'GeoPy', 'EDA & Statistics']
     },
     {
       category: 'Frameworks & Web Development',
