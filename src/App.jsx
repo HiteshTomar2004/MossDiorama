@@ -29,7 +29,7 @@ export function App() {
       className={`relative min-h-screen transition-colors duration-300 ${
         isLight2D
           ? 'bg-[#fcfbf9] text-neutral-900 font-["Newsreader"] selection:bg-neutral-900 selection:text-white'
-          : 'bg-grotto-950 text-pale-bone font-["Alegreya"] selection:bg-amber-fire/30 selection:text-amber-glow'
+          : 'bg-[#0a0e0c] text-[#f0ede6] font-["Newsreader"] selection:bg-[#c89658]/30 selection:text-[#ffd699]'
       }`}
     >
       {/* HUD Navigation Header */}

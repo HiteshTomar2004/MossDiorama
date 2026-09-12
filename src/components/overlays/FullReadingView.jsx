@@ -54,31 +54,31 @@ export const FullReadingView = () => {
   }
 
   // Theme dynamic class definitions
-  const sectionBorder = isLight ? 'border-neutral-200/90' : 'border-spore-mint/20'
+  const sectionBorder = isLight ? 'border-neutral-200/90' : 'border-[#222e28]'
   const cardBg = isLight
     ? 'bg-white border border-neutral-200/80 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] hover:border-neutral-400/80'
-    : 'silksong-card border border-spore-mint/20 hover:border-amber-fire/50'
-  const textMuted = isLight ? 'text-neutral-600' : 'text-bone-muted'
-  const textHead = isLight ? 'text-neutral-950' : 'text-pale-bone'
-  const accentGold = isLight ? 'text-amber-800' : 'text-amber-fire'
+    : 'bg-[#121815] border border-[#232f28] hover:border-[#384840] shadow-[0_4px_24px_rgba(0,0,0,0.3)]'
+  const textMuted = isLight ? 'text-neutral-600' : 'text-[#9caaa2]'
+  const textHead = isLight ? 'text-neutral-950' : 'text-[#f2eee7]'
+  const accentGold = isLight ? 'text-amber-800' : 'text-[#c89658]'
   const badgeBg = isLight
     ? 'bg-neutral-100 text-neutral-800 border-neutral-200'
-    : 'bg-grotto-950/80 text-spore-mint/90 border-spore-mint/20'
+    : 'bg-[#18211c] text-[#a9bcaf] border-[#293730]'
 
   return (
     <main
-      className={`w-full max-w-4xl mx-auto px-4 sm:px-6 py-24 sm:py-28 space-y-28 transition-colors duration-300 selectable-prose ${
-        isLight ? 'text-neutral-800' : 'text-pale-bone'
+      className={`w-full max-w-4xl mx-auto px-4 sm:px-6 py-28 sm:py-32 space-y-28 transition-colors duration-300 selectable-prose ${
+        isLight ? 'text-neutral-800' : 'text-[#f0ede6]'
       }`}
     >
       {/* =========================================================================
           1. HERO & IDENTITY GATEWAY (#hearth)
          ========================================================================= */}
-      <section id="hearth" className="pt-8 sm:pt-14 space-y-8 text-center scroll-mt-24">
+      <section id="hearth" className="pt-10 sm:pt-16 space-y-8 text-center scroll-mt-28">
         {/* Top Lore Monogram / Overline */}
         <div className="flex items-center justify-center space-x-3 text-xs font-['Cinzel'] tracking-[0.3em] uppercase">
           <span className={accentGold}>◈</span>
-          <span className={isLight ? 'text-neutral-500 font-semibold' : 'text-amber-fire/80'}>
+          <span className={isLight ? 'text-neutral-500 font-semibold' : 'text-[#c89658]'}>
             The Moss Grotto · Digital Archive
           </span>
           <span className={accentGold}>◈</span>
@@ -94,7 +94,7 @@ export const FullReadingView = () => {
 
           <p
             className={`font-['Newsreader'] text-xl sm:text-2xl italic tracking-wide ${
-              isLight ? 'text-neutral-600' : 'text-spore-mint'
+              isLight ? 'text-neutral-600' : 'text-[#9bb1a4]'
             }`}
           >
             {resumeData.title}
@@ -104,8 +104,8 @@ export const FullReadingView = () => {
         {/* Location & Status Pill */}
         <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-['JetBrains_Mono']">
           <span
-            className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full border ${
-              isLight ? 'bg-neutral-100 border-neutral-300 text-neutral-700' : 'bg-grotto-900 border-spore-mint/30 text-spore-mint'
+            className={`inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border ${
+              isLight ? 'bg-neutral-100 border-neutral-300 text-neutral-700' : 'bg-[#141b17] border-[#293730] text-[#a4b6ab]'
             }`}
           >
             <MapPin className="w-3.5 h-3.5" />
@@ -113,8 +113,8 @@ export const FullReadingView = () => {
           </span>
 
           <span
-            className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full border ${
-              isLight ? 'bg-amber-50 border-amber-300 text-amber-900' : 'bg-amber-fire/10 border-amber-fire/30 text-amber-fire'
+            className={`inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border ${
+              isLight ? 'bg-amber-50 border-amber-300 text-amber-900' : 'bg-[#c89658]/10 border-[#c89658]/30 text-[#e4b77d]'
             }`}
           >
             <Sparkles className="w-3 h-3" />
@@ -126,7 +126,7 @@ export const FullReadingView = () => {
         <div className="max-w-2xl mx-auto pt-2">
           <p
             className={`font-['Newsreader'] text-lg sm:text-xl leading-relaxed italic ${
-              isLight ? 'text-neutral-700' : 'text-bone-muted'
+              isLight ? 'text-neutral-700' : 'text-[#c2cbc5]'
             }`}
           >
             “{resumeData.about}”
@@ -134,14 +134,14 @@ export const FullReadingView = () => {
         </div>
 
         {/* Primary Call-to-Actions & Social Link Matrix */}
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
+        <div className="flex flex-wrap items-center justify-center gap-3.5 pt-4">
           {/* Switch to 3D Realm Button */}
           <button
             onClick={toggle3DMode}
-            className={`flex items-center space-x-2 px-5 py-2.5 rounded-xl font-['Cinzel'] text-xs font-bold tracking-widest uppercase transition-all shadow-md cursor-pointer ${
+            className={`flex items-center space-x-2 px-5 py-2.5 rounded-xl font-['Cinzel'] text-xs sm:text-sm font-bold tracking-widest uppercase transition-all shadow-md cursor-pointer ${
               isLight
                 ? 'bg-neutral-900 hover:bg-neutral-800 text-white shadow-neutral-900/10'
-                : 'bg-amber-fire/20 border border-amber-fire text-amber-fire hover:bg-amber-fire hover:text-grotto-950'
+                : 'bg-[#c89658]/20 border border-[#c89658]/60 text-[#e4b77d] hover:bg-[#c89658] hover:text-[#0b0e0c]'
             }`}
           >
             <Box className="w-4 h-4 text-amber-400" />
@@ -151,10 +151,10 @@ export const FullReadingView = () => {
           {/* Download PDF / Print Resume */}
           <button
             onClick={handleDownloadResume}
-            className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl font-['Cinzel'] text-xs font-semibold tracking-wider uppercase border transition-all cursor-pointer ${
+            className={`flex items-center space-x-2 px-4.5 py-2.5 rounded-xl font-['Cinzel'] text-xs sm:text-sm font-semibold tracking-wider uppercase border transition-all cursor-pointer ${
               isLight
                 ? 'bg-white border-neutral-300 hover:border-neutral-500 text-neutral-800 hover:bg-neutral-50'
-                : 'bg-grotto-950 border-spore-mint/30 hover:border-spore-mint text-pale-bone'
+                : 'bg-[#141b17] border-[#293730] hover:border-[#384840] text-[#f0ede6]'
             }`}
           >
             <Download className="w-3.5 h-3.5" />
@@ -162,7 +162,7 @@ export const FullReadingView = () => {
           </button>
 
           {/* Social Badges */}
-          <div className="flex items-center space-x-1.5 pl-2">
+          <div className="flex items-center space-x-2 pl-2">
             <a
               href={resumeData.github}
               target="_blank"
@@ -171,7 +171,7 @@ export const FullReadingView = () => {
               className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
                 isLight
                   ? 'border-neutral-200 text-neutral-700 hover:border-neutral-400 hover:text-neutral-950 hover:bg-neutral-100'
-                  : 'border-spore-mint/20 text-bone-muted hover:border-spore-mint hover:text-pale-bone hover:bg-grotto-900'
+                  : 'border-[#222e28] text-[#8e9f95] hover:border-[#384840] hover:text-[#f0ede6] hover:bg-[#18211c]'
               }`}
             >
               <GithubIcon className="w-4 h-4" />
@@ -185,7 +185,7 @@ export const FullReadingView = () => {
               className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
                 isLight
                   ? 'border-neutral-200 text-neutral-700 hover:border-neutral-400 hover:text-neutral-950 hover:bg-neutral-100'
-                  : 'border-spore-mint/20 text-bone-muted hover:border-spore-mint hover:text-pale-bone hover:bg-grotto-900'
+                  : 'border-[#222e28] text-[#8e9f95] hover:border-[#384840] hover:text-[#f0ede6] hover:bg-[#18211c]'
               }`}
             >
               <LinkedinIcon className="w-4 h-4" />
@@ -197,7 +197,7 @@ export const FullReadingView = () => {
               className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
                 isLight
                   ? 'border-neutral-200 text-neutral-700 hover:border-neutral-400 hover:text-neutral-950 hover:bg-neutral-100'
-                  : 'border-spore-mint/20 text-bone-muted hover:border-spore-mint hover:text-pale-bone hover:bg-grotto-900'
+                  : 'border-[#222e28] text-[#8e9f95] hover:border-[#384840] hover:text-[#f0ede6] hover:bg-[#18211c]'
               }`}
             >
               <Mail className="w-4 h-4" />
@@ -209,13 +209,13 @@ export const FullReadingView = () => {
       {/* =========================================================================
           2. RUNIC RELICS & PROJECTS (#projects)
          ========================================================================= */}
-      <section id="projects" className="space-y-8 scroll-mt-24">
+      <section id="projects" className="space-y-8 scroll-mt-28">
         {/* Section Header */}
         <div className={`flex flex-col sm:flex-row sm:items-end justify-between pb-4 border-b ${sectionBorder} gap-4`}>
           <div>
-            <div className="flex items-center space-x-2 text-xs font-['JetBrains_Mono'] uppercase tracking-widest text-amber-600 dark:text-amber-fire">
-              <span>⚒</span>
-              <span>01 · Artifacts & Relics</span>
+            <div className={`flex items-center space-x-2 text-xs font-['JetBrains_Mono'] uppercase tracking-widest ${accentGold}`}>
+              <span>◈</span>
+              <span>01 · Artifacts & Selected Works</span>
             </div>
             <h2 className={`font-['Instrument_Serif'] text-4xl sm:text-5xl tracking-tight mt-1 ${textHead}`}>
               Runic Relics & Selected Works
@@ -228,14 +228,14 @@ export const FullReadingView = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1 rounded-full text-xs font-['Cinzel'] tracking-wider uppercase transition-all duration-200 cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-['Cinzel'] tracking-wider uppercase transition-all duration-200 cursor-pointer ${
                   selectedCategory === cat
                     ? isLight
                       ? 'bg-neutral-900 text-white font-bold shadow-sm'
-                      : 'bg-amber-fire/25 border border-amber-fire text-amber-fire shadow-md'
+                      : 'bg-[#233129] border border-[#3e5648] text-[#f0ede6] font-bold shadow-sm'
                     : isLight
                     ? 'bg-neutral-100 hover:bg-neutral-200/80 text-neutral-600'
-                    : 'bg-grotto-900/60 hover:bg-grotto-850 text-bone-muted border border-spore-mint/10'
+                    : 'bg-[#141b17] hover:bg-[#1a231e] text-[#8e9f95] border border-[#222e28]'
                 }`}
               >
                 {cat}
@@ -254,14 +254,14 @@ export const FullReadingView = () => {
               <div className="space-y-3">
                 {/* Meta Header */}
                 <div className="flex items-center justify-between text-xs font-['JetBrains_Mono']">
-                  <span className={`tracking-wider font-semibold ${isLight ? 'text-amber-800' : 'text-amber-fire'}`}>
+                  <span className={`tracking-wider font-semibold ${accentGold}`}>
                     {project.rune}
                   </span>
                   <span
                     className={`px-2.5 py-0.5 rounded-full border text-[11px] font-['Cinzel'] uppercase tracking-wider ${
                       isLight
                         ? 'bg-neutral-100 border-neutral-300 text-neutral-700'
-                        : 'bg-spore-mint/10 border-spore-mint/30 text-spore-mint'
+                        : 'bg-[#18211c] border-[#293730] text-[#a4b6ab]'
                     }`}
                   >
                     {project.category}
@@ -297,10 +297,10 @@ export const FullReadingView = () => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className={`inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    className={`inline-flex items-center space-x-1 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
                       isLight
                         ? 'bg-neutral-900 text-white hover:bg-neutral-800'
-                        : 'bg-amber-fire/20 border border-amber-fire/40 text-amber-fire hover:bg-amber-fire hover:text-grotto-950'
+                        : 'bg-[#c89658]/20 border border-[#c89658]/50 text-[#e4b77d] hover:bg-[#c89658] hover:text-[#0b0e0c]'
                     }`}
                   >
                     <span>Inspect</span>
@@ -311,10 +311,10 @@ export const FullReadingView = () => {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className={`inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border transition-all ${
+                    className={`inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg border transition-all ${
                       isLight
                         ? 'border-neutral-200 hover:border-neutral-400 text-neutral-700 hover:bg-neutral-50'
-                        : 'border-spore-mint/20 text-bone-muted hover:text-pale-bone hover:border-spore-mint/50 bg-grotto-950'
+                        : 'border-[#222e28] text-[#8e9f95] hover:text-[#f0ede6] hover:border-[#384840] bg-[#141b17]'
                     }`}
                   >
                     <GithubIcon className="w-3.5 h-3.5" />
@@ -330,11 +330,11 @@ export const FullReadingView = () => {
       {/* =========================================================================
           3. TRAVELER’S CHRONICLE, SKILLS & HONORS (#resume)
          ========================================================================= */}
-      <section id="resume" className="space-y-10 scroll-mt-24">
+      <section id="resume" className="space-y-10 scroll-mt-28">
         {/* Section Header */}
         <div className={`pb-4 border-b ${sectionBorder}`}>
-          <div className="flex items-center space-x-2 text-xs font-['JetBrains_Mono'] uppercase tracking-widest text-amber-600 dark:text-amber-fire">
-            <span>📜</span>
+          <div className={`flex items-center space-x-2 text-xs font-['JetBrains_Mono'] uppercase tracking-widest ${accentGold}`}>
+            <span>◈</span>
             <span>02 · Chronicle & Competencies</span>
           </div>
           <h2 className={`font-['Instrument_Serif'] text-4xl sm:text-5xl tracking-tight mt-1 ${textHead}`}>
@@ -357,7 +357,7 @@ export const FullReadingView = () => {
                   className={`absolute -left-[31px] top-1.5 w-3 h-3 rounded-full border-2 transition-all ${
                     isLight
                       ? 'bg-white border-neutral-800 group-hover:scale-125'
-                      : 'bg-grotto-950 border-spore-mint group-hover:border-amber-fire group-hover:scale-125'
+                      : 'bg-[#0f1412] border-[#526a5c] group-hover:border-[#c89658] group-hover:scale-125'
                   }`}
                 />
 
@@ -370,7 +370,7 @@ export const FullReadingView = () => {
                   </span>
                 </div>
 
-                <p className={`font-['Cinzel'] text-xs tracking-wider mt-0.5 ${isLight ? 'text-neutral-500 font-semibold' : 'text-spore-mint'}`}>
+                <p className={`font-['Cinzel'] text-xs tracking-wider mt-0.5 ${isLight ? 'text-neutral-500 font-semibold' : 'text-[#9bb1a4]'}`}>
                   {exp.company} · <span className="font-normal">{exp.location}</span>
                 </p>
 
@@ -448,11 +448,11 @@ export const FullReadingView = () => {
       {/* =========================================================================
           4. BIOLUMINESCENT GROVE NOTES & ESSAYS (#blog)
          ========================================================================= */}
-      <section id="blog" className="space-y-8 scroll-mt-24">
+      <section id="blog" className="space-y-8 scroll-mt-28">
         {/* Section Header */}
         <div className={`pb-4 border-b ${sectionBorder}`}>
-          <div className="flex items-center space-x-2 text-xs font-['JetBrains_Mono'] uppercase tracking-widest text-amber-600 dark:text-amber-fire">
-            <span>🍄</span>
+          <div className={`flex items-center space-x-2 text-xs font-['JetBrains_Mono'] uppercase tracking-widest ${accentGold}`}>
+            <span>◈</span>
             <span>03 · Field Notes & Musings</span>
           </div>
           <h2 className={`font-['Instrument_Serif'] text-4xl sm:text-5xl tracking-tight mt-1 ${textHead}`}>
@@ -477,7 +477,7 @@ export const FullReadingView = () => {
               <h3 className={`font-['Instrument_Serif'] text-3xl sm:text-5xl leading-tight ${textHead}`}>
                 {selectedBlogArticle.title}
               </h3>
-              <div className="flex items-center space-x-4 text-xs font-['JetBrains_Mono'] text-neutral-500 dark:text-bone-muted">
+              <div className="flex items-center space-x-4 text-xs font-['JetBrains_Mono'] text-neutral-500 dark:text-[#8e9f95]">
                 <span className="flex items-center space-x-1">
                   <Calendar className="w-3.5 h-3.5" />
                   <span>{selectedBlogArticle.date}</span>
@@ -490,7 +490,7 @@ export const FullReadingView = () => {
             </div>
 
             <div className={`prose max-w-none font-['Newsreader'] text-lg sm:text-xl leading-relaxed whitespace-pre-line ${
-              isLight ? 'text-neutral-800' : 'text-pale-bone/90'
+              isLight ? 'text-neutral-800' : 'text-[#f0ede6]'
             }`}>
               {selectedBlogArticle.content}
             </div>
@@ -498,8 +498,8 @@ export const FullReadingView = () => {
             <div className="pt-4 flex justify-end">
               <button
                 onClick={() => setSelectedBlogArticle(null)}
-                className={`text-xs font-['Cinzel'] tracking-wider uppercase font-semibold px-4 py-2 rounded-lg border ${
-                  isLight ? 'bg-neutral-100 hover:bg-neutral-200 border-neutral-300' : 'bg-grotto-950 border-spore-mint/30'
+                className={`text-xs font-['Cinzel'] tracking-wider uppercase font-semibold px-4 py-2 rounded-lg border cursor-pointer ${
+                  isLight ? 'bg-neutral-100 hover:bg-neutral-200 border-neutral-300' : 'bg-[#141b17] border-[#293730] text-[#f0ede6]'
                 }`}
               >
                 Close Tablet
@@ -516,13 +516,13 @@ export const FullReadingView = () => {
                 className={`group p-6 rounded-2xl transition-all duration-200 cursor-pointer flex flex-col justify-between ${cardBg}`}
               >
                 <div className="space-y-2.5">
-                  <div className="flex items-center justify-between text-xs font-['JetBrains_Mono'] text-neutral-500 dark:text-bone-muted">
+                  <div className="flex items-center justify-between text-xs font-['JetBrains_Mono'] text-neutral-500 dark:text-[#8e9f95]">
                     <span className="flex items-center space-x-1.5">
-                      <Calendar className="w-3 h-3 text-neutral-400 dark:text-spore-mint" />
+                      <Calendar className="w-3 h-3 text-neutral-400 dark:text-[#8e9f95]" />
                       <span>{post.date}</span>
                     </span>
                     <span className="flex items-center space-x-1.5">
-                      <Clock className="w-3 h-3 text-amber-600 dark:text-amber-fire" />
+                      <Clock className="w-3 h-3 text-amber-700 dark:text-[#c89658]" />
                       <span>{post.readTime}</span>
                     </span>
                   </div>
@@ -564,11 +564,11 @@ export const FullReadingView = () => {
       {/* =========================================================================
           5. THE WHISPERING WELL & DISPATCH (#contact)
          ========================================================================= */}
-      <section id="contact" className="space-y-8 scroll-mt-24">
+      <section id="contact" className="space-y-8 scroll-mt-28">
         {/* Section Header */}
         <div className={`pb-4 border-b ${sectionBorder}`}>
-          <div className="flex items-center space-x-2 text-xs font-['JetBrains_Mono'] uppercase tracking-widest text-amber-600 dark:text-amber-fire">
-            <span>💧</span>
+          <div className={`flex items-center space-x-2 text-xs font-['JetBrains_Mono'] uppercase tracking-widest ${accentGold}`}>
+            <span>◈</span>
             <span>04 · Missives & Inquiry</span>
           </div>
           <h2 className={`font-['Instrument_Serif'] text-4xl sm:text-5xl tracking-tight mt-1 ${textHead}`}>
@@ -597,10 +597,10 @@ export const FullReadingView = () => {
                 className={`flex items-center space-x-3 p-3.5 rounded-xl border transition-all ${
                   isLight
                     ? 'bg-white border-neutral-200 text-neutral-800 hover:border-neutral-400 hover:bg-neutral-50 shadow-sm'
-                    : 'bg-grotto-950 border-spore-mint/20 text-pale-bone hover:border-amber-fire'
+                    : 'bg-[#141b17] border-[#222e28] text-[#f0ede6] hover:border-[#384840]'
                 }`}
               >
-                <Mail className="w-4 h-4 text-amber-600 dark:text-amber-fire" />
+                <Mail className="w-4 h-4 text-amber-600 dark:text-[#c89658]" />
                 <span className="font-semibold">{resumeData.email}</span>
               </a>
 
@@ -611,7 +611,7 @@ export const FullReadingView = () => {
                 className={`flex items-center space-x-3 p-3.5 rounded-xl border transition-all ${
                   isLight
                     ? 'bg-white border-neutral-200 text-neutral-800 hover:border-neutral-400 hover:bg-neutral-50 shadow-sm'
-                    : 'bg-grotto-950 border-spore-mint/20 text-pale-bone hover:border-spore-mint'
+                    : 'bg-[#141b17] border-[#222e28] text-[#f0ede6] hover:border-[#384840]'
                 }`}
               >
                 <GithubIcon className="w-4 h-4" />
@@ -625,7 +625,7 @@ export const FullReadingView = () => {
                 className={`flex items-center space-x-3 p-3.5 rounded-xl border transition-all ${
                   isLight
                     ? 'bg-white border-neutral-200 text-neutral-800 hover:border-neutral-400 hover:bg-neutral-50 shadow-sm'
-                    : 'bg-grotto-950 border-spore-mint/20 text-pale-bone hover:border-spore-mint'
+                    : 'bg-[#141b17] border-[#222e28] text-[#f0ede6] hover:border-[#384840]'
                 }`}
               >
                 <LinkedinIcon className="w-4 h-4" />
@@ -640,7 +640,7 @@ export const FullReadingView = () => {
               <div
                 className={`h-full flex flex-col items-center justify-center p-8 rounded-2xl text-center space-y-3 ${cardBg} animate-fadeIn`}
               >
-                <CheckCircle2 className="w-10 h-10 text-emerald-600 dark:text-spore-mint animate-bounce" />
+                <CheckCircle2 className="w-10 h-10 text-emerald-700 dark:text-[#82a390] animate-bounce" />
                 <h4 className={`font-['Instrument_Serif'] text-3xl ${textHead}`}>
                   Missive Dispatched
                 </h4>
@@ -660,7 +660,7 @@ export const FullReadingView = () => {
             ) : (
               <form onSubmit={handleContactSubmit} className={`p-6 rounded-2xl space-y-4 ${cardBg}`}>
                 <div>
-                  <label className={`block text-xs font-['Cinzel'] tracking-wider uppercase mb-1.5 font-semibold ${isLight ? 'text-neutral-700' : 'text-bone-muted'}`}>
+                  <label className={`block text-xs font-['Cinzel'] tracking-wider uppercase mb-1.5 font-semibold ${isLight ? 'text-neutral-700' : 'text-[#a4b2aa]'}`}>
                     Your Traveler Name
                   </label>
                   <input
@@ -672,13 +672,13 @@ export const FullReadingView = () => {
                     className={`w-full px-4 py-2.5 rounded-xl text-sm transition-colors focus:outline-none ${
                       isLight
                         ? 'bg-neutral-50 border border-neutral-300 text-neutral-900 focus:border-neutral-900 focus:bg-white'
-                        : 'bg-grotto-950 border border-spore-mint/20 text-pale-bone focus:border-amber-fire'
+                        : 'bg-[#101513] border border-[#24312a] text-[#f0ede6] focus:border-[#c89658]'
                     }`}
                   />
                 </div>
 
                 <div>
-                  <label className={`block text-xs font-['Cinzel'] tracking-wider uppercase mb-1.5 font-semibold ${isLight ? 'text-neutral-700' : 'text-bone-muted'}`}>
+                  <label className={`block text-xs font-['Cinzel'] tracking-wider uppercase mb-1.5 font-semibold ${isLight ? 'text-neutral-700' : 'text-[#a4b2aa]'}`}>
                     Contact Signal (Email)
                   </label>
                   <input
@@ -690,13 +690,13 @@ export const FullReadingView = () => {
                     className={`w-full px-4 py-2.5 rounded-xl text-sm transition-colors focus:outline-none ${
                       isLight
                         ? 'bg-neutral-50 border border-neutral-300 text-neutral-900 focus:border-neutral-900 focus:bg-white'
-                        : 'bg-grotto-950 border border-spore-mint/20 text-pale-bone focus:border-amber-fire'
+                        : 'bg-[#101513] border border-[#24312a] text-[#f0ede6] focus:border-[#c89658]'
                     }`}
                   />
                 </div>
 
                 <div>
-                  <label className={`block text-xs font-['Cinzel'] tracking-wider uppercase mb-1.5 font-semibold ${isLight ? 'text-neutral-700' : 'text-bone-muted'}`}>
+                  <label className={`block text-xs font-['Cinzel'] tracking-wider uppercase mb-1.5 font-semibold ${isLight ? 'text-neutral-700' : 'text-[#a4b2aa]'}`}>
                     Inscribed Missive
                   </label>
                   <textarea
@@ -708,17 +708,17 @@ export const FullReadingView = () => {
                     className={`w-full px-4 py-2.5 rounded-xl text-sm transition-colors focus:outline-none resize-none ${
                       isLight
                         ? 'bg-neutral-50 border border-neutral-300 text-neutral-900 focus:border-neutral-900 focus:bg-white'
-                        : 'bg-grotto-950 border border-spore-mint/20 text-pale-bone focus:border-amber-fire'
+                        : 'bg-[#101513] border border-[#24312a] text-[#f0ede6] focus:border-[#c89658]'
                     }`}
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className={`w-full flex items-center justify-center space-x-2 py-3 rounded-xl font-['Cinzel'] text-xs font-bold tracking-[0.2em] uppercase transition-all shadow-md cursor-pointer ${
+                  className={`w-full flex items-center justify-center space-x-2 py-3 rounded-xl font-['Cinzel'] text-xs sm:text-sm font-bold tracking-[0.2em] uppercase transition-all shadow-md cursor-pointer ${
                     isLight
                       ? 'bg-neutral-900 hover:bg-neutral-800 text-white shadow-neutral-900/15'
-                      : 'bg-amber-fire/20 border border-amber-fire text-amber-fire hover:bg-amber-fire hover:text-grotto-950'
+                      : 'bg-[#c89658]/20 border border-[#c89658]/60 text-[#e4b77d] hover:bg-[#c89658] hover:text-[#0b0e0c]'
                   }`}
                 >
                   <Send className="w-3.5 h-3.5" />
@@ -734,7 +734,7 @@ export const FullReadingView = () => {
           6. FOOTER & RETURN TO 3D BEACON
          ========================================================================= */}
       <footer className={`pt-12 border-t ${sectionBorder} flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-['Cinzel'] tracking-widest`}>
-        <p className={isLight ? 'text-neutral-500' : 'text-bone-muted/60'}>
+        <p className={isLight ? 'text-neutral-500' : 'text-[#7e8f85]'}>
           ◈ THE MOSS GROTTO · REACT THREE FIBER & EDITORIAL TYPOGRAPHY ◈
         </p>
 
@@ -749,10 +749,10 @@ export const FullReadingView = () => {
 
           <button
             onClick={toggle3DMode}
-            className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border uppercase transition-all cursor-pointer ${
+            className={`flex items-center space-x-1.5 px-3.5 py-2 rounded-xl border uppercase transition-all cursor-pointer ${
               isLight
                 ? 'bg-neutral-900 text-white hover:bg-neutral-800 border-neutral-900'
-                : 'bg-amber-fire/20 text-amber-fire border-amber-fire/50 hover:bg-amber-fire hover:text-grotto-950'
+                : 'bg-[#c89658]/20 text-[#e4b77d] border border-[#c89658]/50 hover:bg-[#c89658] hover:text-[#0b0e0c]'
             }`}
           >
             <Eye className="w-3.5 h-3.5" />
