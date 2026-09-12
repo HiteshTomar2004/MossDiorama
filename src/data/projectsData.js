@@ -1,5 +1,17 @@
 export const projectsData = [
   {
+    id: 'ndrf-guardian-aiot',
+    title: 'NDRF Guardian — AIoT Edge Intelligent Wearable',
+    category: 'Full-Stack / AI',
+    summary: 'TinyML disaster response wearable on ESP32-S3 running a 5.8 KB quantized neural net for real-time vitals, fall detection, and LoRa telemetry.',
+    description: 'An edge-intelligent wearable system developed at AICTE IDEA Lab (GGSIPU) for disaster response personnel operating in network-dead, collapsed structures. Features an on-device dual-output neural network quantized to 5.8 KB running on an ESP32-S3 MCU (95% accuracy, 96% critical recall). Monitors heart rate, SpO₂, ambient heat index, and toxic gases, paired with BLE indoor zoning, fall detection SOS, and 5–10 km LoRa communication to an offline Node-RED command center.',
+    techStack: ['TinyML', 'TFLite Micro', 'ESP32-S3', 'Python', 'TensorFlow', 'INT8 Quantization', 'LoRa (SX1278)', 'BLE Beacons', 'Node-RED'],
+    githubUrl: 'https://github.com/HiteshTomar2004/AIOT_Wearable_device',
+    liveUrl: 'https://github.com/HiteshTomar2004/AIOT_Wearable_device',
+    accentColor: '#e29b4e',
+    rune: '◈ I'
+  },
+  {
     id: 'digital-footprint-intel',
     title: 'Digital Footprint Intelligence Platform',
     category: 'Full-Stack / AI',
@@ -9,7 +21,7 @@ export const projectsData = [
     githubUrl: 'https://github.com/HiteshTomar2004/Digital-Footprint-Intelligence-Platform',
     liveUrl: 'https://github.com/HiteshTomar2004/Digital-Footprint-Intelligence-Platform',
     accentColor: '#df9d52',
-    rune: '◈ I'
+    rune: '◈ II'
   },
   {
     id: 'sourcemate-ai',
@@ -21,7 +33,7 @@ export const projectsData = [
     githubUrl: 'https://github.com/HiteshTomar2004/SourceMateAI',
     liveUrl: 'https://github.com/HiteshTomar2004/SourceMateAI',
     accentColor: '#52b788',
-    rune: '◈ II'
+    rune: '◈ III'
   },
   {
     id: 'ecoscout',
@@ -33,7 +45,7 @@ export const projectsData = [
     githubUrl: 'https://github.com/HiteshTomar2004/EcoIndex',
     liveUrl: 'https://github.com/HiteshTomar2004/EcoIndex',
     accentColor: '#82d8b4',
-    rune: '◈ III'
+    rune: '◈ IV'
   },
   {
     id: 'bluestock-mf-analytics',
@@ -45,7 +57,7 @@ export const projectsData = [
     githubUrl: 'https://github.com/HiteshTomar2004/Bluestock_mf_capstone',
     liveUrl: 'https://github.com/HiteshTomar2004/Bluestock_mf_capstone',
     accentColor: '#c89658',
-    rune: '◈ IV'
+    rune: '◈ V'
   },
   {
     id: 'biohealth-agent',
@@ -57,7 +69,7 @@ export const projectsData = [
     githubUrl: 'https://github.com/HiteshTomar2004/Health-Chatbot',
     liveUrl: 'https://github.com/HiteshTomar2004/Health-Chatbot',
     accentColor: '#e29b4e',
-    rune: '◈ V'
+    rune: '◈ VI'
   },
   {
     id: 'backend-ecom-v2',
@@ -69,7 +81,7 @@ export const projectsData = [
     githubUrl: 'https://github.com/HiteshTomar2004/BackendEcomJS',
     liveUrl: 'https://github.com/HiteshTomar2004/BackendEcomJS',
     accentColor: '#c93b3b',
-    rune: '◈ VI'
+    rune: '◈ VII'
   },
   {
     id: 'moss-grotto-3d',
@@ -81,6 +93,6 @@ export const projectsData = [
     githubUrl: 'https://github.com/HiteshTomar2004',
     liveUrl: '#',
     accentColor: '#52b788',
-    rune: '◈ VII'
+    rune: '◈ VIII'
   }
 ]

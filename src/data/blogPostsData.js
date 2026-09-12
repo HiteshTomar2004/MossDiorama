@@ -1,5 +1,50 @@
 export const blogPostsData = [
   {
+    id: 'tinyml-esp32-accuracy-trap',
+    title: 'The 100% Accuracy Trap: Quantizing a TinyML Dual-Output Model to 5.8 KB for the ESP32-S3',
+    date: 'Summer 2026',
+    readTime: '7 min read',
+    tags: ['TinyML', 'Edge AI', 'ESP32-S3', 'TensorFlow Lite', 'IoT'],
+    excerpt: 'Why 100% synthetic accuracy is a red flag, how 7% controlled label noise saved our disaster response model, and compressing dual-task inference into a 5.8 KB C-array for offline microcontrollers.',
+    content: `When disaster response teams (such as the NDRF) enter a collapsed concrete structure or subterranean industrial site, the primary operational reality is harsh: there is zero cellular signal, zero Wi-Fi, and zero cloud connectivity.
+
+If health risk detection and fall alerting depend on an API call, personnel are left defenseless. The entire intelligence pipeline must run on-device, in real time, on an ultra-low-power microcontroller.
+
+### The Data Dilemma: You Can't Ethically Induce Hypoxia
+Machine learning requires data, but clinical vital data for disaster responders in lethal environments simply does not exist. You cannot ethically place human test subjects into toxic gas chambers or induce acute hypoxemia to gather training records.
+
+To solve this, I designed a synthetic data generation pipeline synthesizing 15,000 samples strictly anchored to authoritative medical and occupational literature:
+- AHA (American Heart Association) Heart Rate Zones: Calibrating resting, moderate exertion, and physiological max limits.
+- WHO Oxygen Saturation Thresholds: Hard-capping severe hypoxia (<85%) and warning thresholds (<90%).
+- NIOSH Work-Rest Cycles: Factoring ambient heat stress, humidity, and active shift duration.
+
+We engineered 11 input features, including derived metrics like the Heat Index, a cumulative Fatigue Score (derived from elevated HR over time), and SpO₂ drop from individual baseline.
+
+### The "100% Accuracy Trap"
+The first version of our dual-output Multi-Layer Perceptron (MLP) achieved a flawless 100% classification accuracy on our test partition.
+
+In academic coursework, 100% is celebrated. In mission-critical engineering, 100% accuracy on synthetic data is an immediate red flag. It meant our generator had produced artificially clean, non-overlapping clusters that the neural network easily memorized. In real biology, a worker at 85 bpm and 92% SpO₂ could be perfectly safe or rapidly entering distress depending on uncaptured contextual factors.
+
+To fix this, I intentionally introduced 7% controlled label noise into the transitional boundary regions. This forced the network to learn smooth probabilistic decision boundaries rather than rigid memorization walls, resulting in a realistic, battle-tested 95% overall accuracy.
+
+Crucially, for the Critical class—where a false negative could cost a rescuer's life—the model achieved 0.94 precision and 0.96 recall. Out of 993 true critical emergencies, 956 were caught instantly, and the 37 borderline edge cases were categorized into 'Warning', ensuring 100% of critical incidents triggered an immediate alert.
+
+### Shared Backbone Dual-Output Architecture
+The wearable needed two outputs:
+1. A discrete 3-tier risk classification (Safe / Warning / Critical) for instant hardware interrupts and SOS beepers.
+2. A continuous 0–100 Worker Safety Index (WSI) for telemetry graphing on command post dashboards.
+
+Running two distinct neural networks on an ESP32-S3 would double RAM consumption and compute time. Instead, we built a shared representation backbone:
+Input (11 normalized features) -> Dense(32, ReLU) -> Dense(16, ReLU)
+- Branch A: Softmax(3) -> Risk Level (Safe, Warning, Critical)
+- Branch B: Sigmoid * 100 -> Worker Safety Index (0–100 continuous score)
+
+### INT8 Quantization: From Python to a 5.8 KB C-Array
+To deploy onto the ESP32-S3 microcontroller, we performed INT8 post-training quantization via TensorFlow Lite.
+
+The resulting model compiled down to exactly 5,960 bytes (5.8 KB). We exported it directly as a flat C array (nirvana_model_data.h) and hardcoded the feature normalization vectors in firmware. Flashed onto the ESP32-S3, TensorFlow Lite Micro executes the dual inference in ~7 milliseconds alongside sensor polling and LoRa SX1278 packet transmission—proving that life-saving edge AI doesn't need gigabytes of cloud infrastructure; it needs disciplined engineering.`
+  },
+  {
     id: 'multi-agent-langgraph',
     title: 'Multi-Agent Orchestration with LangGraph: Beyond Linear LLM Chains',
     date: 'Winter 2026',
