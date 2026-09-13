@@ -266,34 +266,6 @@ export const SleepingCatRugSprite = ({ position = [1.4, 0, 0.5] }) => {
   )
 }
 
-// -------------------------------------------------------------
-// 1c. GROTTO PINE TREE SPRITE (from Concept Art Asset!)
-// -------------------------------------------------------------
-let grottoPineTreeTexture = null
-
-function getGrottoPineTreeTexture() {
-  if (!grottoPineTreeTexture) {
-    const loader = new THREE.TextureLoader()
-    grottoPineTreeTexture = loader.load('/textures/grotto_pine_tree.png')
-    grottoPineTreeTexture.colorSpace = THREE.SRGBColorSpace
-  }
-  return grottoPineTreeTexture
-}
-
-export const GrottoPineTreeSprite = ({ position = [0, 0, 0], scale = 1 }) => {
-  const texture = useMemo(() => getGrottoPineTreeTexture(), [])
-
-  return (
-    <group position={position} scale={scale}>
-      <Billboard follow lockX={false} lockY={false} lockZ={false}>
-        <mesh position={[0, 4.5, 0]}>
-          <planeGeometry args={[5.0, 9.0]} />
-          <meshBasicMaterial map={texture} transparent alphaTest={0.02} side={THREE.DoubleSide} />
-        </mesh>
-      </Billboard>
-    </group>
-  )
-}
 
 // -------------------------------------------------------------
 // 1c-alt. LAYERED EVERGREEN PINE TREE

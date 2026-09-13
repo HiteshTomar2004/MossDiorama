@@ -4,7 +4,6 @@ import * as THREE from 'three'
 
 // ─────────────────────────────────────────────────────────────────
 // High-Performance Storybook 3D Bioluminescent Mushroom Grove
-// Directly modeled after public/textures/silksong_mushrooms.jpg:
 // - Authentic parasol / bell-shaped umbrella caps created via lathe profiles
 // - Hand-painted celestial turquoise & mint bioluminescent cap textures
 // - Radiant underside gill discs with luminous pleated emission

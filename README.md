@@ -82,9 +82,11 @@ MossDiorama/
 │   ├── utils/               # SFX synthesizer and sound player
 │   ├── App.jsx              # Main viewport orchestrator
 │   └── main.jsx             # React entrypoint
+├── resume/
+│   ├── resume.pdf           # Compiled ATS resume PDF
+│   └── resume.tex           # LaTeX source for ATS resume
 ├── index.html
 ├── package.json
-├── resume.tex               # LaTeX source for ATS resume
 └── vite.config.js
 ```
 

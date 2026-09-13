@@ -3,8 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 // ─────────────────────────────────────────────────────────────────
-// High-Performance Storybook 3D Runic Monolith Landmark (Silksong Theme)
-// Directly based on public/textures/silksong_monolith.jpg:
+// High-Performance Storybook 3D Runic Monolith Landmark
 // - Stepped ancient cracked stone dais & plinth foundation
 // - 4-sided tapered ancient stone obelisk with peaked pyramidion capstone
 // - Carved insectoid / moth guardian totem effigies (top & bottom crests)
