@@ -26,10 +26,8 @@ dist-ssr
 *.sln
 *.sw?
 
-# Reference directories and unused assets
-wayfinder-ref/
-wayfinder_ref/
-public/assets/trees/wayfinder_tree_sprites.jpg
+# Scratch & development artifacts
+scratch/
 
 # LaTeX temp files and build caches
 *.aux
