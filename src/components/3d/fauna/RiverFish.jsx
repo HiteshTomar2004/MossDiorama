@@ -12,13 +12,13 @@ import { RIVER_POINTS } from '../mapConfig'
  */
 
 const FISH_CONFIGS = [
-  { initialU: 0.33, lateralOffset: -1.2, speed: 0.012, scale: 1.25, phase: 0.0 },
-  { initialU: 0.38, lateralOffset: 0.9, speed: 0.010, scale: 1.1, phase: 1.5 },
-  { initialU: 0.43, lateralOffset: -0.6, speed: 0.014, scale: 1.35, phase: 3.1 },
-  { initialU: 0.48, lateralOffset: 1.3, speed: 0.011, scale: 1.15, phase: 4.2 },
-  { initialU: 0.53, lateralOffset: -1.0, speed: 0.013, scale: 1.2, phase: 0.8 },
-  { initialU: 0.58, lateralOffset: 0.8, speed: 0.010, scale: 1.05, phase: 2.3 },
-  { initialU: 0.63, lateralOffset: -1.3, speed: 0.012, scale: 1.3, phase: 5.0 },
+  { initialU: 0.33, lateralOffset: -1.2, speed: 0.012, scale: 1.25, phase: 0.0, variant: 'black_red' },
+  { initialU: 0.38, lateralOffset: 0.9, speed: 0.010, scale: 1.1, phase: 1.5, variant: 'kohaku' },
+  { initialU: 0.43, lateralOffset: -0.6, speed: 0.014, scale: 1.35, phase: 3.1, variant: 'black_red' },
+  { initialU: 0.48, lateralOffset: 1.3, speed: 0.011, scale: 1.15, phase: 4.2, variant: 'kohaku' },
+  { initialU: 0.53, lateralOffset: -1.0, speed: 0.013, scale: 1.2, phase: 0.8, variant: 'black_red' },
+  { initialU: 0.58, lateralOffset: 0.8, speed: 0.010, scale: 1.05, phase: 2.3, variant: 'kohaku' },
+  { initialU: 0.63, lateralOffset: -1.3, speed: 0.012, scale: 1.3, phase: 5.0, variant: 'black_red' },
 ]
 
 export const RiverFish = () => {
@@ -28,6 +28,16 @@ export const RiverFish = () => {
   const textures = useMemo(() => {
     return [0, 1, 2].map((i) => {
       const tex = loader.load(`/assets/fauna/fish_${i}.png?v=9`)
+      tex.colorSpace = THREE.SRGBColorSpace
+      tex.magFilter = THREE.LinearFilter
+      tex.minFilter = THREE.LinearMipmapLinearFilter
+      return tex
+    })
+  }, [loader])
+
+  const blackTextures = useMemo(() => {
+    return [0, 1, 2].map((i) => {
+      const tex = loader.load(`/assets/fauna/fish_black_${i}.png?v=1`)
       tex.colorSpace = THREE.SRGBColorSpace
       tex.magFilter = THREE.LinearFilter
       tex.minFilter = THREE.LinearMipmapLinearFilter
@@ -75,7 +85,7 @@ export const RiverFish = () => {
         st.frameTimer = 0
         st.frame = (st.frame + 1) % 3
         if (mat) {
-          mat.map = textures[st.frame]
+          mat.map = (cfg.variant === 'black_red' ? blackTextures : textures)[st.frame]
           mat.needsUpdate = true
         }
       }
@@ -149,7 +159,7 @@ export const RiverFish = () => {
               <planeGeometry args={[1.1 * cfg.scale, 2.2 * cfg.scale]} />
               <meshBasicMaterial
                 ref={(el) => (matRefs.current[idx] = el)}
-                map={textures[0]}
+                map={(cfg.variant === 'black_red' ? blackTextures : textures)[0]}
                 transparent
                 alphaTest={0.06}
                 depthWrite={false}

@@ -299,6 +299,14 @@ export const EnvironmentTerrain = () => {
   const isLmbDownRef = useRef(false)
   const isSteeringRef = useRef(false)
   const setCatTarget = usePortfolioStore((s) => s.setCatTarget)
+  const activeOverlay = usePortfolioStore((s) => s.activeOverlay)
+
+  useEffect(() => {
+    if (activeOverlay) {
+      isLmbDownRef.current = false
+      isSteeringRef.current = false
+    }
+  }, [activeOverlay])
 
   // Deadzone thresholds for continuous pointer steering with hysteresis:
   // - To START steering: cursor must be pulled at least 2.0 units away from cat (approx 1 cat length)
@@ -308,6 +316,11 @@ export const EnvironmentTerrain = () => {
   const DEADZONE_STOP = 1.3
 
   const updateSteerTarget = (point) => {
+    if (usePortfolioStore.getState().activeOverlay) {
+      isLmbDownRef.current = false
+      isSteeringRef.current = false
+      return
+    }
     const catPos = usePortfolioStore.getState().catCurrentPos
     if (!catPos) {
       setCatTarget([point.x, 0, point.z])
@@ -336,6 +349,7 @@ export const EnvironmentTerrain = () => {
 
   // Continuously steer cat toward mouse point while LMB is held
   const handlePointerDown = (e) => {
+    if (usePortfolioStore.getState().activeOverlay) return
     if (e.button === 0) {
       isLmbDownRef.current = true
       updateSteerTarget(e.point)
@@ -343,6 +357,11 @@ export const EnvironmentTerrain = () => {
   }
 
   const handlePointerMove = (e) => {
+    if (usePortfolioStore.getState().activeOverlay) {
+      isLmbDownRef.current = false
+      isSteeringRef.current = false
+      return
+    }
     usePortfolioStore.getState().setCursorWorldPos([e.point.x, e.point.z])
     if (isLmbDownRef.current) {
       updateSteerTarget(e.point)
@@ -363,8 +382,16 @@ export const EnvironmentTerrain = () => {
         isSteeringRef.current = false
       }
     }
+    const onBlur = () => {
+      isLmbDownRef.current = false
+      isSteeringRef.current = false
+    }
     window.addEventListener('pointerup', onGlobalUp)
-    return () => window.removeEventListener('pointerup', onGlobalUp)
+    window.addEventListener('blur', onBlur)
+    return () => {
+      window.removeEventListener('pointerup', onGlobalUp)
+      window.removeEventListener('blur', onBlur)
+    }
   }, [])
 
   return (

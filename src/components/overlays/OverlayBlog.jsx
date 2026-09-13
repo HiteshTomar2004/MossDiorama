@@ -1,94 +1,103 @@
 import React, { useState } from 'react'
 import { OverlayWrapper } from './OverlayWrapper'
 import { blogPostsData } from '../../data/blogPostsData'
-import { BookOpen, Calendar, Clock, ChevronRight } from 'lucide-react'
+import { Calendar, Clock, ChevronRight } from 'lucide-react'
 
 export const OverlayBlog = () => {
   const [selectedPost, setSelectedPost] = useState(null)
 
   return (
-    <OverlayWrapper title="Notes" symbol="📝">
+    <OverlayWrapper title="Notes" symbol="◈">
       {selectedPost ? (
-        <div className="space-y-6">
+        <div className="p-6 sm:p-8 rounded-2xl bg-[#15171b] border border-white/[0.06] space-y-6 shadow-[0_4px_24px_rgba(0,0,0,0.4)] animate-fadeIn">
           <button
             onClick={() => setSelectedPost(null)}
-            className="flex items-center space-x-2 text-xs font-['Cinzel'] tracking-wider text-amber-fire hover:text-amber-glow uppercase cursor-pointer"
+            className="flex items-center space-x-2 text-xs font-['Cinzel'] tracking-wider uppercase font-bold cursor-pointer text-[#d4a373] hover:underline"
           >
-            <span>← Back to Notes</span>
+            <span>← Back to All Notes</span>
           </button>
 
-          <div className="border-b border-spore-mint/20 pb-4">
-            <h3 className="font-['Cinzel'] text-2xl font-bold text-pale-bone leading-tight">
+          <div className="pb-4 border-b border-white/[0.08] space-y-2">
+            <h3 className="font-['Instrument_Serif'] text-3xl sm:text-5xl leading-tight text-[#f4f4f6]">
               {selectedPost.title}
             </h3>
-            <div className="flex items-center space-x-4 mt-2 text-xs text-bone-muted font-mono">
+            <div className="flex items-center space-x-4 text-xs font-['JetBrains_Mono'] text-neutral-400">
               <span className="flex items-center space-x-1">
-                <Calendar className="w-3.5 h-3.5 text-spore-mint" />
+                <Calendar className="w-3.5 h-3.5" />
                 <span>{selectedPost.date}</span>
               </span>
               <span className="flex items-center space-x-1">
-                <Clock className="w-3.5 h-3.5 text-amber-fire" />
+                <Clock className="w-3.5 h-3.5 text-[#d4a373]" />
                 <span>{selectedPost.readTime}</span>
               </span>
             </div>
           </div>
 
-          <div className="prose prose-invert max-w-none text-pale-bone/90 font-['Alegreya'] text-base leading-relaxed whitespace-pre-line">
+          <div className="prose prose-invert max-w-none font-['Newsreader'] text-lg sm:text-xl leading-relaxed whitespace-pre-line text-neutral-200">
             {selectedPost.content}
+          </div>
+
+          <div className="pt-4 flex justify-end">
+            <button
+              onClick={() => setSelectedPost(null)}
+              className="text-xs font-['Cinzel'] tracking-wider uppercase font-semibold px-4 py-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-neutral-300 hover:text-white cursor-pointer transition-all"
+            >
+              Close Note
+            </button>
           </div>
         </div>
       ) : (
-        <div className="space-y-5">
-          <p className="text-xs text-bone-muted font-['Cinzel'] tracking-widest uppercase">
-            ◈ Technical Notes & Engineering Articles ◈
+        <div className="space-y-6">
+          <p className="font-['Newsreader'] text-base italic text-neutral-400">
+            Technical writeups on systems architecture, machine learning, and engineering lessons.
           </p>
 
           <div className="grid grid-cols-1 gap-4">
             {blogPostsData.map((post) => (
-              <div
+              <article
                 key={post.id}
                 onClick={() => setSelectedPost(post)}
-                className="group p-5 rounded-xl bg-grotto-900/60 border border-spore-mint/15 hover:border-spore-mint/50 hover:bg-grotto-900/90 transition-all cursor-pointer flex flex-col justify-between"
+                className="group p-6 rounded-2xl bg-[#15171b] border border-white/[0.06] hover:border-white/[0.12] shadow-[0_4px_24px_rgba(0,0,0,0.4)] transition-all duration-200 cursor-pointer flex flex-col justify-between"
               >
-                <div>
-                  <div className="flex items-center justify-between text-xs text-bone-muted font-mono mb-2">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between text-xs font-['JetBrains_Mono'] text-neutral-400">
                     <span className="flex items-center space-x-1.5">
-                      <Calendar className="w-3 h-3 text-spore-mint" />
+                      <Calendar className="w-3 h-3 text-neutral-400" />
                       <span>{post.date}</span>
                     </span>
                     <span className="flex items-center space-x-1.5">
-                      <Clock className="w-3 h-3 text-amber-fire" />
+                      <Clock className="w-3 h-3 text-[#d4a373]" />
                       <span>{post.readTime}</span>
                     </span>
                   </div>
 
-                  <h4 className="font-['Cinzel'] text-lg font-bold text-pale-bone group-hover:text-spore-mint transition-colors">
+                  <h4 className="font-['Instrument_Serif'] text-2xl sm:text-3xl leading-snug group-hover:translate-x-0.5 text-[#f4f4f6] group-hover:text-white transition-transform">
                     {post.title}
                   </h4>
 
-                  <p className="mt-2 text-sm text-bone-muted font-['Alegreya'] leading-relaxed">
+                  <p className="font-['Newsreader'] text-base leading-relaxed text-neutral-400 line-clamp-2">
                     {post.excerpt}
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-spore-mint/10 flex items-center justify-between">
+                <div className="mt-5 pt-3 border-t border-white/[0.08] flex items-center justify-between">
                   <div className="flex flex-wrap gap-1.5">
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-grotto-950 border border-spore-mint/10 text-spore-mint/80"
+                        className="text-[10px] font-['JetBrains_Mono'] px-2 py-0.5 rounded bg-white/[0.06] text-neutral-300"
                       >
                         #{tag}
                       </span>
                     ))}
                   </div>
 
-                  <span className="flex items-center space-x-1 text-xs font-['Cinzel'] tracking-wider text-amber-fire group-hover:translate-x-1 transition-transform">
+                  <span className="inline-flex items-center space-x-1 text-xs font-['Cinzel'] tracking-wider font-bold text-[#d4a373] group-hover:translate-x-1 transition-transform">
                     <span>Read Note</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>

@@ -1,0 +1,180 @@
+%-------------------------
+% Resume in LaTeX
+% Author : Hitesh Tomar
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,10.5pt]{article}
+
+\usepackage{latexsym}
+\usepackage[letterpaper, top=0.34in, bottom=0.34in, left=0.46in, right=0.46in]{geometry}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{charter} % Bitstream Charter - tall x-height, robust & elegant serif
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting - clean, natural line height without compression
+\titleformat{\section}{
+  \vspace{-2pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-2pt}]
+
+% Ensure machine readable/ATS parsable
+\pdfgentounicode=1
+
+% Custom commands - full natural line height
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \vspace{-1pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}, itemsep=0pt, topsep=1pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-3pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, itemsep=1.5pt, parsep=0pt, topsep=1pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-3pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape Hitesh Tomar} \\ \vspace{2pt}
+    \small Delhi, India ~$\vert$~ 
+    \raisebox{-0.1\height}\faPhone\ +91-7982677717 ~$\vert$~
+    \href{mailto:hitesh28tomar@gmail.com}{\raisebox{-0.2\height}\faEnvelope\ \underline{hitesh28tomar@gmail.com}} \\ \vspace{2pt}
+    \href{https://www.linkedin.com/in/hitesh-tomar-b31059344/}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/hitesh-tomar}} ~$\vert$~
+    \href{https://github.com/HiteshTomar2004}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/HiteshTomar2004}}
+    \vspace{-4pt}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {University School of Automation and Robotics (USAR), GGSIPU}{Delhi, India}
+    {Bachelor of Technology in Artificial Intelligence and Machine Learning (CGPA: 8.8/10)}{2024 -- 2028}
+    \vspace{-3pt}
+    \item \small{\textbf{Relevant Coursework:} Data Structures \& Algorithms, Machine Learning, Operating Systems, DBMS, Computer Networks}
+\resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}, itemsep=2pt, parsep=0pt, topsep=1pt]
+    \small{\item{
+     \textbf{Languages:} Python (3.11+), C++, JavaScript (ES6+), SQL, HTML/CSS \\
+     \textbf{Machine Learning \& Edge AI:} TinyML, TensorFlow Lite Micro, Scikit-learn, XGBoost, INT8 Quantization, SciPy, SHAP \\
+     \textbf{AI \& LLM Systems:} LangGraph (Multi-Agent), RAG Pipelines, Google Gemini API, Prompt Engineering, Agentic AI \\
+     \textbf{Backend, DB \& Cloud:} FastAPI, Flask, Node.js, Express, PostgreSQL, SQLite, Prisma ORM, Docker, Power BI, GEE, QGIS
+    }}
+\end{itemize}
+\vspace{-3pt}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {AICTE IDEA Lab, GGSIPU}{New Delhi, India}
+    {Machine Learning Engineer Intern -- Edge AI \& TinyML}{Summer 2026}
+    \resumeItemListStart
+      \resumeItem{Engineered TinyML vital-monitoring pipeline for ``NDRF Guardian'', deploying an INT8 model quantized to \textbf{5.8 KB} via TFLite Micro for \textbf{$\sim$7ms inference} on ESP32-S3 with LoRa SX1278 (5--10 km) in dead-zones.}
+      \resumeItem{Trained dual-output multi-task ANN predicting risk levels and continuous safety index with \textbf{95\% accuracy} and \textbf{96\% critical recall} on a synthesized 15,000-sample clinical dataset modeled on AHA, WHO, and NIOSH thresholds.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Bluestock™}{Delhi, India}
+    {Data Analyst Intern -- FinTech}{June 2026 -- Aug 2026}
+    \resumeItemListStart
+      \resumeItem{Architected financial ETL pipeline ingesting live NAV feeds across 40+ mutual fund schemes into an optimized SQLite data warehouse.}
+      \resumeItem{Implemented quantitative financial risk models computing CAGR, Sharpe, Sortino, Alpha, Beta, VaR, and CVaR, visualized via an interactive 5-page Power BI executive dashboard.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {India Space Academy (ISA)}{Delhi, India}
+    {Remote Sensing \& GIS Intern}{Jan 2025 -- Feb 2025}
+    \resumeItemListStart
+      \resumeItem{Developed an automated surface water extraction pipeline using Sentinel-2 multispectral imagery in Google Earth Engine (GEE) to monitor the Yamuna River basin.}
+      \resumeItem{Calculated NDWI across Green and NIR bands, applying focal-mode filtering and QGIS vector analysis to quantify \textbf{6.90 $\text{km}^2$} of water surface area.}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\textbf{EcoScout -- Multi-Agent Sustainability Analyst} $|$ \emph{LangGraph, Python, FastAPI, Gemini, SSE} $|$ \href{https://github.com/HiteshTomar2004/EcoIndex}{\underline{[GitHub]}}}{}
+    \resumeItemListStart
+      \resumeItem{Architected a multi-agent LangGraph system for UN SDG 12 executing parallel web research and automated product sustainability scoring (0--100).}
+      \resumeItem{Coordinated concurrent domain agents (Materials, Supply Chain, Packaging) using live Tavily search and Gemini synthesis, streaming thought steps to React over SSE.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{SourceMate AI -- Multi-Source Research Agent} $|$ \emph{React, Node.js, Express, Gemini API, SSE, Docker} $|$ \href{https://github.com/HiteshTomar2004/SourceMateAI}{\underline{[GitHub]}}}{}
+    \resumeItemListStart
+      \resumeItem{Built document workspace and research chatbot streaming context-grounded Gemini responses over Server-Sent Events (SSE).}
+      \resumeItem{Engineered browser IndexedDB caching for large PDF source uploads, eliminating server file overhead; containerized full-stack services with Docker.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Digital Footprint Intelligence Platform} $|$ \emph{Python, Flask, NetworkX, GeoPy, React, Socket.IO} $|$ \href{https://github.com/HiteshTomar2004/Digital-Footprint-Intelligence-Platform}{\underline{[GitHub]}}}{}
+    \resumeItemListStart
+      \resumeItem{Built digital forensics platform correlating Call Detail Records (CDR), cell tower locations, and banking transactions to detect fraud rings.}
+      \resumeItem{Implemented 7 graph and statistical anomaly algorithms uncovering money laundering layering ($\text{A}\to\text{B}\to\text{C}$), rendered via dynamic NetworkX topologies and real-time Socket.IO.}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------ACHIEVEMENTS & CERTIFICATIONS-----------
+\section{Achievements \& Certifications}
+\begin{itemize}[leftmargin=0.15in, label={}, itemsep=2pt, parsep=0pt, topsep=1pt]
+    \small{\item{
+     \textbf{Smart India Hackathon (SIH) 2025:} Qualified through multiple evaluation rounds with AI-powered healthcare triage solution. \\
+     \textbf{Problem Solving:} Solved \textbf{200+ Data Structures \& Algorithms} problems across LeetCode and GeeksforGeeks. \\
+     \textbf{Certifications:} Data Structures and Algorithms with C/C++ (Wipro Pregrad) $\cdot$ Remote Sensing and GIS (India Space Academy)
+    }}
+\end{itemize}
+
+\end{document}

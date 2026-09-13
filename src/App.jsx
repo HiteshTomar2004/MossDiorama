@@ -4,11 +4,13 @@ import { WorldScene } from './components/3d/WorldScene'
 import { NavigationHeader } from './components/hud/NavigationHeader'
 import { MinimapCompass } from './components/hud/MinimapCompass'
 import { AudioController } from './components/hud/AudioController'
+import { SpotifyPlayer } from './components/hud/SpotifyPlayer'
 import { OverlayProjects } from './components/overlays/OverlayProjects'
 import { OverlayResume } from './components/overlays/OverlayResume'
 import { OverlayBlog } from './components/overlays/OverlayBlog'
 import { OverlayContact } from './components/overlays/OverlayContact'
 import { FullReadingView } from './components/overlays/FullReadingView'
+import { AsciiDonut } from './components/common/AsciiDonut'
 import { Compass, Sparkles } from 'lucide-react'
 
 export function App() {
@@ -40,7 +42,7 @@ export function App() {
       {/* Procedural Ambient Audio Synthesizer */}
       <AudioController />
 
-      {/* Main View: 3D Isometric Realm OR 2D Reading View */}
+      {/* Main View: 3D Isometric Realm OR 2D Reading View with Ascii Donut Background */}
       {is3DMode ? (
         <>
           <WorldScene />
@@ -52,15 +54,21 @@ export function App() {
               <div className="flex items-center space-x-2 px-4 py-2 rounded-full silksong-card border border-spore-mint/30 shadow-2xl backdrop-blur-md">
                 <Sparkles className="w-3.5 h-3.5 text-amber-fire animate-spin" />
                 <span className="font-['Cinzel'] text-xs tracking-wider text-pale-bone">
-                  Hold Left Click to steer the cat · Right Click to orbit camera · Middle Click to pan
+                  Hold Left Click to steer the cat · Right Click to orbit camera · Scroll to zoom
                 </span>
               </div>
             </div>
           )}
         </>
       ) : (
-        <FullReadingView />
+        <>
+          <AsciiDonut isLight={isLight2D} />
+          <FullReadingView />
+        </>
       )}
+
+      {/* Floating Spotify Music Player Widget */}
+      <SpotifyPlayer />
 
       {/* 2D Interactive Overlays */}
       {activeOverlay === 'projects' && <OverlayProjects />}

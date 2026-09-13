@@ -25,7 +25,8 @@ import {
   Calendar,
   Clock,
   Layers,
-  Code
+  Code,
+  Award
 } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '../common/Icons'
 
@@ -76,7 +77,7 @@ export const FullReadingView = () => {
 
   return (
     <main
-      className={`w-full max-w-4xl mx-auto px-4 sm:px-6 py-28 sm:py-32 space-y-28 transition-colors duration-300 selectable-prose ${
+      className={`w-full max-w-4xl mx-auto px-4 sm:px-6 py-28 sm:py-32 space-y-28 transition-colors duration-300 selectable-prose relative z-10 ${
         isLight ? 'text-neutral-800' : 'text-[#f4f4f6]'
       }`}
     >
@@ -145,8 +146,11 @@ export const FullReadingView = () => {
           </button>
 
           {/* Download PDF / Print Resume (Secondary Action) */}
-          <button
-            onClick={handleDownloadResume}
+          <a
+            href="/resume.pdf"
+            download="Hitesh_Tomar_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className={`flex items-center space-x-2 px-4.5 py-2.5 rounded-xl font-['Cinzel'] text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all cursor-pointer ${
               isLight
                 ? 'bg-neutral-100 hover:bg-neutral-200 text-neutral-800'
@@ -155,7 +159,7 @@ export const FullReadingView = () => {
           >
             <Download className="w-3.5 h-3.5" />
             <span>Curriculum Vitae</span>
-          </button>
+          </a>
 
           {/* Social Badges - Borderless Squircles */}
           <div className="flex items-center space-x-2 pl-1">
@@ -470,7 +474,7 @@ export const FullReadingView = () => {
             {resumeData.education.map((edu, idx) => (
               <div
                 key={idx}
-                className={`p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${cardBg}`}
+                className={`p-4 sm:p-5 rounded-xl flex flex-col sm:flex-row sm:items-start justify-between gap-2 ${cardBg}`}
               >
                 <div>
                   <h4 className={`font-['Instrument_Serif'] text-xl sm:text-2xl ${textHead}`}>
@@ -479,15 +483,20 @@ export const FullReadingView = () => {
                   <p className={`font-['Newsreader'] text-sm italic ${textMuted}`}>
                     {edu.institution}
                   </p>
+                  {edu.coursework && (
+                    <p className="text-xs font-['Newsreader'] text-amber-700 dark:text-[#d4a373] mt-1 italic">
+                      <span className="font-semibold not-italic">Coursework:</span> {edu.coursework}
+                    </p>
+                  )}
                 </div>
-                <div className="flex flex-col sm:items-end text-xs font-['JetBrains_Mono']">
+                <div className="flex flex-col sm:items-end text-xs font-['JetBrains_Mono'] shrink-0 mt-1 sm:mt-0">
                   {edu.period && (
                     <span className={`leading-tight ${textMuted}`}>
                       {edu.period}
                     </span>
                   )}
                   {edu.score && (
-                    <span className={`font-medium leading-tight ${accentGold}`}>
+                    <span className={`font-medium leading-tight mt-0.5 ${accentGold}`}>
                       {edu.score}
                     </span>
                   )}
@@ -496,6 +505,25 @@ export const FullReadingView = () => {
             ))}
           </div>
         </div>
+
+        {/* Achievements & Certifications */}
+        {resumeData.achievements && (
+          <div className="space-y-4 pt-2">
+            <h3 className={`font-['Cinzel'] text-xs font-bold uppercase tracking-[0.25em] flex items-center space-x-2 ${accentGold}`}>
+              <Award className="w-4 h-4" />
+              <span>Achievements & Certifications</span>
+            </h3>
+
+            <div className={`p-5 rounded-xl space-y-3 ${cardBg}`}>
+              {resumeData.achievements.map((item, idx) => (
+                <div key={idx} className="flex items-start space-x-3 text-sm font-['Newsreader'] leading-relaxed">
+                  <span className={`select-none mt-0.5 text-xs ${accentGold}`}>◈</span>
+                  <span className={isLight ? 'text-neutral-700' : 'text-neutral-300'}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
 
       {/* =========================================================================

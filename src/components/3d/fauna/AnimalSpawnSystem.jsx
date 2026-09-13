@@ -17,28 +17,28 @@ import { RIVER_POINTS } from '../mapConfig'
 
 const FISH_CONFIGS = [
   // 1. Far Upstream Origin (High North Mountains, u: 0.04 - 0.22)
-  { initialU: 0.04, lateralOffset: -0.8, speed: 0.011, scale: 1.25, phase: 0.3 },
-  { initialU: 0.10, lateralOffset: 1.1, speed: 0.009, scale: 1.15, phase: 1.8 },
-  { initialU: 0.16, lateralOffset: -1.3, speed: 0.013, scale: 1.35, phase: 3.5 },
-  { initialU: 0.22, lateralOffset: 0.7, speed: 0.010, scale: 1.10, phase: 5.1 },
+  { initialU: 0.04, lateralOffset: -0.8, speed: 0.011, scale: 1.25, phase: 0.3, variant: 'black_red' },
+  { initialU: 0.10, lateralOffset: 1.1, speed: 0.009, scale: 1.15, phase: 1.8, variant: 'kohaku' },
+  { initialU: 0.16, lateralOffset: -1.3, speed: 0.013, scale: 1.35, phase: 3.5, variant: 'black_red' },
+  { initialU: 0.22, lateralOffset: 0.7, speed: 0.010, scale: 1.10, phase: 5.1, variant: 'kohaku' },
 
   // 2. Upstream Approach & Northern Meanders (u: 0.28 - 0.46)
-  { initialU: 0.28, lateralOffset: -1.0, speed: 0.012, scale: 1.30, phase: 0.9 },
-  { initialU: 0.34, lateralOffset: 1.2, speed: 0.011, scale: 1.20, phase: 2.4 },
-  { initialU: 0.40, lateralOffset: -0.6, speed: 0.014, scale: 1.40, phase: 4.0 },
-  { initialU: 0.46, lateralOffset: 0.9, speed: 0.010, scale: 1.05, phase: 1.2 },
+  { initialU: 0.28, lateralOffset: -1.0, speed: 0.012, scale: 1.30, phase: 0.9, variant: 'kohaku' },
+  { initialU: 0.34, lateralOffset: 1.2, speed: 0.011, scale: 1.20, phase: 2.4, variant: 'black_red' },
+  { initialU: 0.40, lateralOffset: -0.6, speed: 0.014, scale: 1.40, phase: 4.0, variant: 'black_red' },
+  { initialU: 0.46, lateralOffset: 0.9, speed: 0.010, scale: 1.05, phase: 1.2, variant: 'kohaku' },
 
   // 3. Wooden Footbridge Crossing & Mid-River (u: 0.52 - 0.70)
-  { initialU: 0.52, lateralOffset: -1.4, speed: 0.012, scale: 1.25, phase: 3.0 },
-  { initialU: 0.58, lateralOffset: 0.8, speed: 0.011, scale: 1.15, phase: 4.7 },
-  { initialU: 0.64, lateralOffset: -0.9, speed: 0.013, scale: 1.35, phase: 0.5 },
-  { initialU: 0.70, lateralOffset: 1.3, speed: 0.010, scale: 1.10, phase: 2.1 },
+  { initialU: 0.52, lateralOffset: -1.4, speed: 0.012, scale: 1.25, phase: 3.0, variant: 'black_red' },
+  { initialU: 0.58, lateralOffset: 0.8, speed: 0.011, scale: 1.15, phase: 4.7, variant: 'kohaku' },
+  { initialU: 0.64, lateralOffset: -0.9, speed: 0.013, scale: 1.35, phase: 0.5, variant: 'black_red' },
+  { initialU: 0.70, lateralOffset: 1.3, speed: 0.010, scale: 1.10, phase: 2.1, variant: 'kohaku' },
 
   // 4. Downstream Eastbound & Far Horizon (u: 0.76 - 0.94)
-  { initialU: 0.76, lateralOffset: -1.1, speed: 0.012, scale: 1.30, phase: 3.8 },
-  { initialU: 0.82, lateralOffset: 0.7, speed: 0.009, scale: 1.15, phase: 5.4 },
-  { initialU: 0.88, lateralOffset: -1.2, speed: 0.013, scale: 1.40, phase: 1.6 },
-  { initialU: 0.94, lateralOffset: 1.0, speed: 0.011, scale: 1.20, phase: 3.2 },
+  { initialU: 0.76, lateralOffset: -1.1, speed: 0.012, scale: 1.30, phase: 3.8, variant: 'kohaku' },
+  { initialU: 0.82, lateralOffset: 0.7, speed: 0.009, scale: 1.15, phase: 5.4, variant: 'black_red' },
+  { initialU: 0.88, lateralOffset: -1.2, speed: 0.013, scale: 1.40, phase: 1.6, variant: 'black_red' },
+  { initialU: 0.94, lateralOffset: 1.0, speed: 0.011, scale: 1.20, phase: 3.2, variant: 'kohaku' },
 ]
 
 const FROG_SPAWNS = [
@@ -103,44 +103,19 @@ const BIRD_PERCHES = [
 ]
 
 const FOX_SPAWNS = [
-  // 1. North & Northeast Wilderness (Under trees far off path)
+  // Widely dispersed solitary wilderness foxes (spaced ~40+ units apart, zero bundling)
   { pos: [-35.0, 0.05, -67.0], width: 3.0, height: 1.9 },   // North Copse shady roots
-  { pos: [14.0, 0.05, -98.0], width: 3.1, height: 1.95 },   // North Plateau Grove conifer
-  { pos: [20.0, 0.05, -92.0], width: 3.1, height: 1.95 },   // Under conifer roots near Runic Monolith
   { pos: [38.0, 0.05, -106.0], width: 3.0, height: 1.9 },   // Pine canopy east of monolith
   { pos: [64.0, 0.05, -57.0], width: 2.95, height: 1.85 },  // Northeast Riverside Copse
-  { pos: [68.0, 0.05, -90.0], width: 3.05, height: 1.9 },   // Northeast Hills Copse
-  { pos: [94.0, 0.05, -100.0], width: 3.1, height: 1.95 },  // North-Northeast Far Woods
-  { pos: [-24.0, 0.05, -118.0], width: 3.1, height: 1.95 }, // North Mountain Rim cedar (river-safe)
-
-  // 2. Northwest Wilderness (Under trees far off path)
-  { pos: [-68.0, 0.05, -102.0], width: 3.0, height: 1.9 },  // Northwest Deep Woods
   { pos: [-105.0, 0.05, -82.0], width: 3.1, height: 1.95 }, // Northwest Far Rim pine
-  { pos: [-85.0, 0.05, -70.0], width: 2.95, height: 1.85 }, // Lone conifer in northwest wilds
   { pos: [-25.0, 0.05, -47.0], width: 3.0, height: 1.9 },   // River Approach Copse oak
-
-  // 3. West & Southwest Wilderness (Under trees far off path)
-  { pos: [-100.0, 0.05, -42.0], width: 3.1, height: 1.95 }, // Under giant bioluminescent mushrooms
   { pos: [-114.0, 0.05, -30.0], width: 3.0, height: 1.9 },  // Deep willow roots in mushroom grove
   { pos: [-125.0, 0.05, 16.0], width: 3.05, height: 1.9 },  // Far West Meadow Rim oak
-  { pos: [-82.0, 0.05, -17.0], width: 2.95, height: 1.85 }, // Far West Copse near Blog
-  { pos: [-58.0, 0.05, 40.0], width: 3.0, height: 1.9 },    // Southwest Glade birch
-  { pos: [-85.0, 0.05, 106.0], width: 3.1, height: 1.95 },  // Southwest Far Woods pine
-  { pos: [-92.0, 0.05, 86.0], width: 3.05, height: 1.9 },   // Under weeping willow canopy near stone well
-  { pos: [-108.0, 0.05, 74.0], width: 2.95, height: 1.85 }, // Between mossy rock and fern roots
-
-  // 4. South & Southeast Wilderness (Under trees far off path)
+  { pos: [-108.0, 0.05, 74.0], width: 2.95, height: 1.85 }, // Mossy rock & fern roots near well
   { pos: [-45.0, 0.05, 116.0], width: 3.1, height: 1.95 },  // South Deep Woods oak
-  { pos: [-18.0, 0.05, 66.0], width: 2.95, height: 1.85 },  // South-Central Meadow tree
   { pos: [15.0, 0.05, 116.0], width: 3.1, height: 1.95 },   // Far South Deep Glade conifer
-  { pos: [58.0, 0.05, 120.0], width: 3.1, height: 1.95 },   // Far South Forest Rim pine
-  { pos: [48.0, 0.05, 46.0], width: 2.95, height: 1.85 },   // Southeast Meadow tree
-  { pos: [82.0, 0.05, 60.0], width: 3.05, height: 1.9 },    // East Plateau Grove conifer
-  { pos: [78.0, 0.05, 82.0], width: 3.0, height: 1.9 },     // Under pine canopy near timber fence
   { pos: [96.0, 0.05, 86.0], width: 3.1, height: 1.95 },   // Behind firewood shelter under pine roots
-  { pos: [112.0, 0.05, 66.0], width: 3.05, height: 1.9 },   // Southeast Far Ridge cedar
   { pos: [118.0, 0.05, -57.0], width: 3.0, height: 1.9 },   // Far East Waterside Forest oak
-  { pos: [98.0, 0.05, -10.0], width: 2.95, height: 1.85 },  // South River Copse willow (river-safe)
 ]
 
 export const AnimalSpawnSystem = () => {
@@ -151,6 +126,13 @@ export const AnimalSpawnSystem = () => {
   // ──────────────────────────────────────────────
   const fishTextures = useMemo(() => [0, 1, 2].map((i) => {
     const t = loader.load(`/assets/fauna/fish_${i}.png?v=11`)
+    t.colorSpace = THREE.SRGBColorSpace
+    return t
+  }), [loader])
+
+  // Black and Red Koi (Hi Utsuri / Beni Kumonryu)
+  const blackFishTextures = useMemo(() => [0, 1, 2].map((i) => {
+    const t = loader.load(`/assets/fauna/fish_black_${i}.png?v=1`)
     t.colorSpace = THREE.SRGBColorSpace
     return t
   }), [loader])
@@ -291,7 +273,8 @@ export const AnimalSpawnSystem = () => {
       if (st.frameTimer >= 0.16) {
         st.frameTimer = 0
         st.frame = (st.frame + 1) % 3
-        mat.map = fishTextures[st.frame]
+        const activeTex = (cfg.variant === 'black_red' ? blackFishTextures : fishTextures)[st.frame]
+        mat.map = activeTex
         mat.needsUpdate = true
       }
 
@@ -341,6 +324,7 @@ export const AnimalSpawnSystem = () => {
           hopProgress: 0,
           isHopping: false,
           hopCooldown: Math.random() * 2.0,
+          hasInteracted: false,
         }
         frogStates.current[idx] = st
       }
@@ -350,18 +334,23 @@ export const AnimalSpawnSystem = () => {
 
       st.hopCooldown = Math.max(0, st.hopCooldown - delta)
 
-      // Fast AABB rejection before distance check
-      if (catPos && !st.isHopping && st.hopCooldown <= 0) {
+      // Enter/Exit Hysteresis: interact ONCE when cat enters (< 5.0 units), reset only when cat leaves (> 7.5 units)
+      if (catPos && !st.isHopping) {
         const dx = px - spawn.pos[0]
-        if (Math.abs(dx) <= 5.0) {
-          const dz = pz - spawn.pos[2]
-          if (Math.abs(dz) <= 5.0 && dx * dx + dz * dz < 25.0) {
+        const dz = pz - spawn.pos[2]
+        const distSq = dx * dx + dz * dz
+
+        if (distSq < 25.0) {
+          if (!st.hasInteracted && st.hopCooldown <= 0) {
+            st.hasInteracted = true
             st.isHopping = true
             st.hopProgress = 0
             st.frame = 3 // Leaping pose!
-            st.hopCooldown = 3.6
+            st.hopCooldown = 1.0
             sfx.playFrogCroak()
           }
+        } else if (distSq > 56.25) {
+          st.hasInteracted = false
         }
       }
 
@@ -412,6 +401,7 @@ export const AnimalSpawnSystem = () => {
           isFluttering: false,
           cooldown: Math.random() * 2.0,
           phase: spawn.phase || 0,
+          hasInteracted: false,
         }
         birdStates.current[idx] = st
       }
@@ -419,17 +409,22 @@ export const AnimalSpawnSystem = () => {
 
       st.cooldown = Math.max(0, st.cooldown - delta)
 
-      // Fast AABB rejection before distance check
-      if (catPos && !st.isFluttering && st.cooldown <= 0) {
+      // Enter/Exit Hysteresis: flutter & chirp ONCE on approach (< 5.5 units), reset when cat leaves (> 8.0 units)
+      if (catPos && !st.isFluttering) {
         const dx = px - spawn.pos[0]
-        if (Math.abs(dx) <= 5.5) {
-          const dz = pz - spawn.pos[2]
-          if (Math.abs(dz) <= 5.5 && dx * dx + dz * dz < 30.25) {
+        const dz = pz - spawn.pos[2]
+        const distSq = dx * dx + dz * dz
+
+        if (distSq < 30.25) {
+          if (!st.hasInteracted && st.cooldown <= 0) {
+            st.hasInteracted = true
             st.isFluttering = true
             st.flutterTimer = 1.3
-            st.cooldown = 4.2
+            st.cooldown = 1.0
             sfx.playBirdChirp()
           }
+        } else if (distSq > 64.0) {
+          st.hasInteracted = false
         }
       }
 
@@ -529,7 +524,7 @@ export const AnimalSpawnSystem = () => {
               <planeGeometry args={[1.1 * cfg.scale, 2.2 * cfg.scale]} />
               <meshBasicMaterial
                 ref={(el) => (fishMatRefs.current[idx] = el)}
-                map={fishTextures[0]}
+                map={cfg.variant === 'black_red' ? blackFishTextures[0] : fishTextures[0]}
                 transparent
                 alphaTest={0.001}
                 depthWrite={false}

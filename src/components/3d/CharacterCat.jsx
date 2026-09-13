@@ -99,11 +99,14 @@ export const CharacterCat = () => {
   const catTarget = usePortfolioStore((s) => s.catTarget)
   const setCatTarget = usePortfolioStore((s) => s.setCatTarget)
   const setCatCurrentPos = usePortfolioStore((s) => s.setCatCurrentPos)
+  const setCatIsMoving = usePortfolioStore((s) => s.setCatIsMoving)
+  const activeOverlay = usePortfolioStore((s) => s.activeOverlay)
 
   const [pos, setPos] = useState(new THREE.Vector3(2.0, 0, 1.2))
   const [isMoving, setIsMoving] = useState(false)
   const lastBroadcastPosRef = useRef([2.0, 0, 1.2])
   const keysPressed = useRef({})
+  const blockedKeysRef = useRef(new Set())
 
   const idleTimerRef = useRef(0)
   const currentDirRef = useRef('down') // 'down' | 'up' | 'side'
@@ -111,24 +114,63 @@ export const CharacterCat = () => {
   const facingSignRef = useRef(1)      // 1: right, -1: left
   const lastStepCadenceRef = useRef(-1) // Synchronizes footsteps
 
+  // Halt movement immediately when overlay opens, and block keys held across transition
+  useEffect(() => {
+    if (activeOverlay) {
+      Object.keys(keysPressed.current).forEach((k) => {
+        if (keysPressed.current[k]) {
+          blockedKeysRef.current.add(k)
+        }
+      })
+      keysPressed.current = {}
+      waypointsRef.current = []
+      activeTargetPosRef.current = null
+      setCatTarget(null)
+      setCatIsMoving(false)
+      setIsMoving(false)
+    } else {
+      blockedKeysRef.current.clear()
+    }
+  }, [activeOverlay, setCatTarget, setCatIsMoving])
+
   // Keyboard navigation listeners (WASD & Arrows)
   useEffect(() => {
     const handleKeyDown = (e) => {
-      keysPressed.current[e.key.toLowerCase()] = true
+      // Ignore keystrokes when typing in inputs or textareas (e.g. Contact form)
+      if (['INPUT', 'TEXTAREA'].includes(e.target?.tagName) || e.target?.isContentEditable) {
+        return
+      }
+      const key = e.key.toLowerCase()
+      // If this key was held down as overlay opened, ignore repeated keydowns until cleanly released
+      if (blockedKeysRef.current.has(key)) {
+        return
+      }
+      keysPressed.current[key] = true
     }
     const handleKeyUp = (e) => {
-      keysPressed.current[e.key.toLowerCase()] = false
+      const key = e.key.toLowerCase()
+      blockedKeysRef.current.delete(key)
+      keysPressed.current[key] = false
+    }
+    const handleBlur = () => {
+      keysPressed.current = {}
+      blockedKeysRef.current.clear()
     }
     window.addEventListener('keydown', handleKeyDown)
     window.addEventListener('keyup', handleKeyUp)
+    window.addEventListener('blur', handleBlur)
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('keyup', handleKeyUp)
+      window.removeEventListener('blur', handleBlur)
     }
   }, [])
 
   useFrame(({ clock }, delta) => {
     if (!catRef.current) return
+    if (!Number.isFinite(pos.x) || !Number.isFinite(pos.z)) {
+      pos.set(2.0, 0, 1.2)
+    }
     const speed = 12.0 * delta // Responsive movement
 
     // Compute Camera-Relative Movement Vectors
@@ -205,7 +247,7 @@ export const CharacterCat = () => {
           }
         }
       }
-    } else if (catTarget) {
+    } else if (!activeOverlay && catTarget && Array.isArray(catTarget) && Number.isFinite(catTarget[0]) && Number.isFinite(catTarget[2])) {
       // 2. Click-to-move with Intelligent Bridge Pathfinding
       const targetX = catTarget[0]
       const targetZ = catTarget[2]

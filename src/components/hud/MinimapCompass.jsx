@@ -177,24 +177,6 @@ export const MinimapCompass = () => {
       <span className="mt-1.5 font-['Cinzel'] text-[10px] tracking-widest text-bone-muted/70 uppercase">
         ◈ Realm Radar ◈
       </span>
-
-      {/* Live World Coordinates Display */}
-      <div className="mt-1.5 flex flex-col items-center gap-0.5 bg-black/80 border border-amber-fire/50 rounded-lg px-2.5 py-1 shadow-2xl backdrop-blur-md select-all">
-        <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-amber-glow">
-          <span className="text-amber-fire text-[10px]">🐾 Cat:</span>
-          <span>X: {catX.toFixed(1)}</span>
-          <span className="text-white/20">|</span>
-          <span>Z: {catZ.toFixed(1)}</span>
-        </div>
-        {cursorWorldPos && (
-          <div className="flex items-center gap-1.5 text-[10px] font-mono text-spore-mint/90">
-            <span>🎯 Aim:</span>
-            <span>X: {cursorWorldPos[0].toFixed(1)}</span>
-            <span className="text-white/20">|</span>
-            <span>Z: {cursorWorldPos[1].toFixed(1)}</span>
-          </div>
-        )}
-      </div>
     </div>
   )
 }

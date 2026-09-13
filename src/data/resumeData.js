@@ -63,29 +63,30 @@ export const resumeData = {
 
   skillGarden: [
     {
-      category: 'Languages & Core',
-      skills: ['Python 3.11+', 'JavaScript (ESNext)', 'C / C++', 'SQL', 'HTML5 / CSS3', 'Go (Learning)']
+      category: 'Languages',
+      skills: ['Python 3.11+', 'C++', 'JavaScript (ES6+)', 'SQL', 'HTML/CSS']
     },
     {
-      category: 'AI, Agents & Data Science',
-      skills: ['TinyML', 'TensorFlow Lite Micro', 'ESP32-S3 Edge AI', 'EEG / BCI Decoding', 'Digital Signal Processing (DSP)', 'Google Earth Engine (GEE)', 'Remote Sensing & GIS', 'INT8 Quantization', 'LangGraph (Multi-Agent)', 'Google Gemini API', 'Pandas', 'NumPy', 'SciPy', 'NetworkX', 'Anomaly Detection', 'GeoPy', 'EDA & Statistics']
+      category: 'Machine Learning & Edge AI',
+      skills: ['TinyML', 'TensorFlow Lite Micro', 'Scikit-learn', 'XGBoost', 'INT8 Quantization', 'SciPy (DSP)', 'SHAP', 'Pandas', 'NumPy']
     },
     {
-      category: 'Frameworks & Web Development',
-      skills: ['React 18 / 19', 'Vite', 'Node.js', 'Express', 'FastAPI', 'Flask', 'Tailwind CSS', 'Prisma ORM', 'Socket.IO (WebSockets)', 'Server-Sent Events (SSE)']
+      category: 'AI & LLM Systems',
+      skills: ['LangGraph (Multi-Agent)', 'RAG Pipelines', 'Google Gemini API', 'Prompt Engineering', 'Agentic AI Workflows', 'Server-Sent Events (SSE)']
     },
     {
-      category: 'Databases, DevOps & Tools',
-      skills: ['SQLite', 'PostgreSQL', 'QGIS', 'GeoTIFF / GDAL', 'Docker', 'Power BI', 'LoRa (SX1278)', 'BLE Beacons', 'Node-RED', 'Twilio API', 'Git & GitHub', 'Jupyter', 'Linux / Bash', 'Railway', 'Render']
+      category: 'Backend, Databases & Tools',
+      skills: ['FastAPI', 'Flask', 'Node.js', 'Express.js', 'PostgreSQL', 'SQLite', 'Prisma ORM', 'Docker', 'Power BI', 'Google Earth Engine (GEE)', 'QGIS', 'Git & GitHub']
     }
   ],
 
   education: [
     {
       degree: 'Bachelor of Technology (B.Tech.) in Artificial Intelligence & Machine Learning',
-      institution: 'Guru Gobind Singh Indraprastha University (GGSIPU)',
+      institution: 'University School of Automation and Robotics (USAR), GGSIPU',
       period: '2024 — 2028',
-      score: '8.33 CGPA'
+      score: '8.8 / 10 CGPA',
+      coursework: 'Data Structures & Algorithms, Machine Learning, Operating Systems, DBMS, Computer Networks'
     },
     {
       degree: 'Senior Secondary Certificate (12th Standard)',
@@ -99,9 +100,15 @@ export const resumeData = {
     }
   ],
 
+  achievements: [
+    'Smart India Hackathon (SIH) 2025: Qualified through multiple evaluation rounds with AI-powered healthcare triage solution.',
+    'Problem Solving: Solved 200+ Data Structures & Algorithms problems across LeetCode and GeeksforGeeks.',
+    'Certifications: Data Structures and Algorithms with C/C++ (Wipro Pregrad) · Remote Sensing and GIS (India Space Academy)'
+  ],
+
   certifications: [
     'Winter Training Programme on Remote Sensing and GIS — India Space Academy (ISA)',
-    'Data Structures and Algorithms (DSA) with C/C++'
+    'Data Structures and Algorithms (DSA) with C/C++ (Wipro Pregrad)'
   ]
 }
 

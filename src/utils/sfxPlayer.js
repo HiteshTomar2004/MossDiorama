@@ -52,9 +52,13 @@ class SFXEngine {
           this.ctx.resume()
           window.removeEventListener('click', resume)
           window.removeEventListener('keydown', resume)
+          window.removeEventListener('pointerdown', resume)
+          window.removeEventListener('touchstart', resume)
         }
         window.addEventListener('click', resume)
         window.addEventListener('keydown', resume)
+        window.addEventListener('pointerdown', resume)
+        window.addEventListener('touchstart', resume)
       }
       this.loadAllSounds()
     } catch (e) {
@@ -106,11 +110,12 @@ class SFXEngine {
     const chimePromise = this.loadBuffer('/assets/audio/robot_chime.mp3?v=7')
     const beepPromise = this.loadBuffer('/assets/audio/robot_beep.mp3?v=7')
     const typewriterPromise = this.loadBuffer('/assets/audio/robot_typewriter.mp3?v=7')
+    const groovePromise = this.loadBuffer('/assets/audio/robot_groove.mp3?v=1')
     // 8. Living wildlife fauna sounds
     const frogPromise = this.loadBuffer('/assets/audio/frog_croak.mp3?v=10')
     const birdPromise = this.loadBuffer('/assets/audio/bird_chirp.mp3?v=8')
 
-    const [grass, wood, leaf, rock, treeRustle, hmm, spark, chime, beep, typewriter, frog, bird] = await Promise.all([
+    const [grass, wood, leaf, rock, treeRustle, hmm, spark, chime, beep, typewriter, groove, frog, bird] = await Promise.all([
       Promise.all(grassPromises),
       Promise.all(woodPromises),
       Promise.all(leafPromises),
@@ -121,6 +126,7 @@ class SFXEngine {
       chimePromise,
       beepPromise,
       typewriterPromise,
+      groovePromise,
       frogPromise,
       birdPromise,
     ])
@@ -135,14 +141,18 @@ class SFXEngine {
     this.buffers.robotChime = chime
     this.buffers.robotBeep = beep
     this.buffers.robotTypewriter = typewriter
+    this.buffers.robotGroove = groove
     this.buffers.frogCroak = frog
     this.buffers.birdChirp = bird
   }
 
   getVolume() {
     const state = usePortfolioStore.getState()
-    if (!state.audioPlaying) return 0
-    return state.soundVolume ?? 0.7
+    // Ambience mute (state.audioPlaying) only controls background music/atmosphere!
+    // Interactive SFX (cat footsteps, leaf rustles, nature wildlife, robot interactions) stay active.
+    if (state.sfxEnabled === false) return 0
+    if (state.soundVolume !== undefined && state.soundVolume <= 0) return 0
+    return state.sfxVolume ?? 0.75
   }
 
   playBuffer(buffer, baseVolume = 0.5, pitchVariance = 0.08) {
@@ -305,9 +315,18 @@ class SFXEngine {
     else if (type === 'chime') buffer = this.buffers.robotChime
     else if (type === 'beep') buffer = this.buffers.robotBeep
     else if (type === 'typewriter') buffer = this.buffers.robotTypewriter
+    else if (type === 'groove') buffer = this.buffers.robotGroove
 
     if (buffer) {
-      this.playBuffer(buffer, 0.30, 0.04)
+      this.playBuffer(buffer, 0.35, 0.04)
+    }
+  }
+
+  // Play robot funky groove riff
+  playRobotGroove() {
+    this.init()
+    if (this.buffers.robotGroove) {
+      this.playBuffer(this.buffers.robotGroove, 0.40, 0.04)
     }
   }
 
@@ -337,3 +356,19 @@ class SFXEngine {
 }
 
 export const sfx = new SFXEngine()
+ 
+// Preload and resume SFX on the very first user interaction anywhere in the window
+if (typeof window !== 'undefined') {
+  const onFirstInteraction = () => {
+    sfx.init()
+    if (sfx.ctx && sfx.ctx.state === 'suspended') {
+      sfx.ctx.resume().catch(() => {})
+    }
+    window.removeEventListener('pointerdown', onFirstInteraction)
+    window.removeEventListener('keydown', onFirstInteraction)
+    window.removeEventListener('touchstart', onFirstInteraction)
+  }
+  window.addEventListener('pointerdown', onFirstInteraction, { once: true, passive: true })
+  window.addEventListener('keydown', onFirstInteraction, { once: true, passive: true })
+  window.addEventListener('touchstart', onFirstInteraction, { once: true, passive: true })
+}

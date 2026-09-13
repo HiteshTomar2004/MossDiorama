@@ -266,6 +266,7 @@ const SingleLeaf = ({ initialPos, initialRot, initialScale, texture }) => {
     rotVel: new THREE.Vector3(0, 0, 0),
     isAirborne: false,
     flutterSeed: Math.random() * 100,
+    hasInteracted: false,
   })
 
   // Trigger flutter kick when cat brushes near
@@ -284,17 +285,22 @@ const SingleLeaf = ({ initialPos, initialRot, initialScale, texture }) => {
     if (!meshRef.current) return
     const st = state.current
 
-    // 1. Resting state: fast AABB culling and 0 matrix recalculations when stationary
+    // 1. Resting state: enter/exit hysteresis check (< 1.75 enter, > 3.0 exit)
     if (!st.isAirborne) {
       const catPos = usePortfolioStore.getState().catCurrentPos
       if (!catPos) return
       const dx = catPos[0] - st.currentPos.x
-      if (Math.abs(dx) > 1.75) return
       const dz = catPos[2] - st.currentPos.z
-      if (Math.abs(dz) > 1.75) return
       const distSq = dx * dx + dz * dz
+
       if (distSq < 3.06) {
-        kickLeaf(1.0)
+        if (!st.hasInteracted) {
+          st.hasInteracted = true
+          kickLeaf(1.0)
+        }
+      } else if (distSq > 9.0) {
+        // Cat walked away: reset so leaf can be kicked again on return
+        st.hasInteracted = false
       }
       return // Resting leaves do not dirty matrixWorld or run physics!
     }

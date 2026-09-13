@@ -19,10 +19,16 @@ import { LandmarkRobots } from './robots/LandmarkRobots'
 import { WorldFauna } from './fauna/WorldFauna'
 import { DirectionalSignboards } from './DirectionalSignboards'
 import { MonolithPond } from './MonolithPond'
+import { VinylTurntable } from './VinylTurntable'
+import { JammingRobot } from './robots/JammingRobot'
+import { LandmarkProximityManager } from './LandmarkProximityManager'
 
 export const WorldScene = () => {
   return (
-    <div className="fixed inset-0 w-full h-full bg-[#e6dfd1] overflow-hidden">
+    <div
+      className="fixed inset-0 w-full h-full bg-[#e6dfd1] overflow-hidden"
+      onContextMenu={(e) => e.preventDefault()}
+    >
       <Canvas
         camera={{ position: [14, 18, 14], fov: 28 }}
         dpr={[1, 1.25]}
@@ -47,6 +53,7 @@ export const WorldScene = () => {
 
         <Suspense fallback={null}>
           <CameraManager />
+          <LandmarkProximityManager />
 
           {/* 1. Lush Velvety Terrain with Cobblestones on Rich Dirt Road Foundation */}
           <EnvironmentTerrain />
@@ -54,8 +61,10 @@ export const WorldScene = () => {
           {/* 2. Animated Flowing Crystal Fantasy River Water */}
           <RiverWater />
 
-          {/* 2b. Enchanted Storybook Lake */}
+          {/* 2b. Enchanted Storybook Lake, Lakeside Turntable & Jamming Music Robot */}
           <MonolithPond position={[101.5, 0, -77.0]} />
+          <VinylTurntable position={[102.3, 0, -66.7]} />
+          <JammingRobot position={[100.2, 0, -66.0]} />
 
           {/* 3. Handcrafted Arched Wooden Footbridge spanning the open river */}
           <WoodenFootbridge

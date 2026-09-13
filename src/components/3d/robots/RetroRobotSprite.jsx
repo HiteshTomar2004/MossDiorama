@@ -44,10 +44,11 @@ export const RetroRobotSprite = ({
 
   const frameIndexRef = useRef(0)
   const timerRef = useRef(0)
-  const frameDuration = 1.0 / fps
+  const hasInteractedRef = useRef(false)
 
   useFrame((_, delta) => {
     // 2. Animate sprite frames
+    const frameDuration = 1.0 / (fps || 4.5)
     timerRef.current += delta
     if (timerRef.current >= frameDuration) {
       timerRef.current = timerRef.current % frameDuration
@@ -58,14 +59,19 @@ export const RetroRobotSprite = ({
       }
     }
 
-    // 3. Cat proximity detection: emit cute inquisitive 'hmm' within 4.2 units
+    // 3. Cat proximity detection: emit cute inquisitive 'hmm' ONCE per encounter (enter < 4.2, exit > 6.5)
     const catPos = usePortfolioStore.getState().catCurrentPos
     if (catPos) {
       const dx = catPos[0] - position[0]
       const dz = catPos[2] - position[2]
       const distSq = dx * dx + dz * dz
-      if (distSq < 17.6) {
-        sfx.playRobotHmm()
+      if (distSq < 17.64) {
+        if (!hasInteractedRef.current) {
+          hasInteractedRef.current = true
+          sfx.playRobotHmm()
+        }
+      } else if (distSq > 42.25) {
+        hasInteractedRef.current = false
       }
     }
   })

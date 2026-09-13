@@ -47,6 +47,7 @@ export const ForestParrots = () => {
       isFluttering: false,
       flutterCooldown: Math.random() * 2.0,
       phase: p.phase,
+      hasInteracted: false,
     }))
   )
 
@@ -62,17 +63,22 @@ export const ForestParrots = () => {
 
       st.flutterCooldown = Math.max(0, st.flutterCooldown - delta)
 
-      // Check cat proximity
-      if (catPos && !st.isFluttering && st.flutterCooldown <= 0) {
+      // Enter/Exit Hysteresis: flutter & chirp ONCE on approach (< 5.5 units), reset when cat leaves (> 8.0 units)
+      if (catPos && !st.isFluttering) {
         const dx = catPos[0] - spawn.pos[0]
         const dz = catPos[2] - spawn.pos[2]
         const distSq = dx * dx + dz * dz
 
         if (distSq < 30.0) {
-          st.isFluttering = true
-          st.flutterTimer = 1.3
-          st.flutterCooldown = 4.5
-          sfx.playBirdChirp()
+          if (!st.hasInteracted && st.flutterCooldown <= 0) {
+            st.hasInteracted = true
+            st.isFluttering = true
+            st.flutterTimer = 1.3
+            st.flutterCooldown = 1.0
+            sfx.playBirdChirp()
+          }
+        } else if (distSq > 64.0) {
+          st.hasInteracted = false
         }
       }
 

@@ -130,11 +130,17 @@ const SHORELINE_ROCKS = [
 // ─────────────────────────────────────────────────────────────────
 const KOI_CONFIGS = [
   // Fish 1: Big Kohaku cruising counter-clockwise
-  { a: 4.8, b: 3.6, speed: 0.22, phase: 0.0, scale: 1.25, rippleTimer: 0.2 },
-  // Fish 2: Golden Chagoi cruising clockwise
-  { a: 3.6, b: 4.5, speed: -0.19, phase: 2.1, scale: 1.15, rippleTimer: 0.8 },
+  { a: 4.8, b: 3.6, speed: 0.22, phase: 0.0, scale: 1.25, rippleTimer: 0.2, variant: 'kohaku' },
+  // Fish 2: Black & Red Koi (Hi Utsuri) cruising clockwise
+  { a: 3.6, b: 4.5, speed: -0.19, phase: 2.1, scale: 1.20, rippleTimer: 0.8, variant: 'black_red' },
   // Fish 3: Slender Kohaku cruising outer loop
-  { a: 4.2, b: 4.0, speed: 0.17, phase: 4.3, scale: 1.0, rippleTimer: 1.4 },
+  { a: 4.2, b: 4.0, speed: 0.17, phase: 4.3, scale: 1.05, rippleTimer: 1.4, variant: 'kohaku' },
+  // Fish 4: Striking Obsidian/Crimson Black & Red Koi gliding inner oval
+  { a: 5.2, b: 3.2, speed: -0.21, phase: 1.2, scale: 1.30, rippleTimer: 0.5, variant: 'black_red' },
+  // Fish 5: Medium Kohaku exploring northwest cove
+  { a: 3.8, b: 4.8, speed: 0.18, phase: 3.4, scale: 1.15, rippleTimer: 1.1, variant: 'kohaku' },
+  // Fish 6: Graceful Black & Red Koi sweeping wide south arc
+  { a: 4.6, b: 4.2, speed: -0.16, phase: 5.2, scale: 1.25, rippleTimer: 1.7, variant: 'black_red' },
 ]
 
 // ─────────────────────────────────────────────────────────────────
@@ -349,9 +355,17 @@ export const MonolithPond = ({ position = [101.5, 0, -77.0] }) => {
     standingStone: loader.load('/assets/props/rock_standing_stone.png'),
   }), [loader])
 
-  // 2. Preload 3-Frame Koi Fish Textures
+  // 2. Preload 3-Frame Koi Fish Textures (Kohaku & Black/Red Hi Utsuri)
   const fishTextures = useMemo(() => [0, 1, 2].map((i) => {
     const tex = loader.load(`/assets/fauna/fish_${i}.png?v=12`)
+    tex.colorSpace = THREE.SRGBColorSpace
+    tex.magFilter = THREE.LinearFilter
+    tex.minFilter = THREE.LinearMipmapLinearFilter
+    return tex
+  }), [loader])
+
+  const blackFishTextures = useMemo(() => [0, 1, 2].map((i) => {
+    const tex = loader.load(`/assets/fauna/fish_black_${i}.png?v=1`)
     tex.colorSpace = THREE.SRGBColorSpace
     tex.magFilter = THREE.LinearFilter
     tex.minFilter = THREE.LinearMipmapLinearFilter
@@ -459,7 +473,7 @@ export const MonolithPond = ({ position = [101.5, 0, -77.0] }) => {
       const mat = fishMatRefs.current[idx]
       const rip = fishRippleRefs.current[idx]
       const st = fishStates.current[idx]
-      if (!grp) return
+      if (!grp || !st) return
 
       // Smooth elliptical trajectory in deep water
       const angle = elapsed * cfg.speed + cfg.phase
@@ -482,7 +496,7 @@ export const MonolithPond = ({ position = [101.5, 0, -77.0] }) => {
         st.frameTimer = 0
         st.frame = (st.frame + 1) % 3
         if (mat) {
-          mat.map = fishTextures[st.frame]
+          mat.map = (cfg.variant === 'black_red' ? blackFishTextures : fishTextures)[st.frame]
           mat.needsUpdate = true
         }
       }
@@ -541,7 +555,7 @@ export const MonolithPond = ({ position = [101.5, 0, -77.0] }) => {
               <planeGeometry args={[1.1 * cfg.scale, 2.2 * cfg.scale]} />
               <meshBasicMaterial
                 ref={(el) => (fishMatRefs.current[idx] = el)}
-                map={fishTextures[0]}
+                map={(cfg.variant === 'black_red' ? blackFishTextures : fishTextures)[0]}
                 transparent
                 alphaTest={0.01}
                 depthWrite={false}

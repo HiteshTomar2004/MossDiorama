@@ -13,8 +13,20 @@ export const CameraManager = () => {
     const catCurrentPos = usePortfolioStore.getState().catCurrentPos
     if (!controlsRef.current || !catCurrentPos) return
 
-    const catVec = new THREE.Vector3(catCurrentPos[0], 0, catCurrentPos[2])
+    // Ensure catCurrentPos has valid finite coordinates
+    const catX = Number.isFinite(catCurrentPos[0]) ? catCurrentPos[0] : 2.0
+    const catZ = Number.isFinite(catCurrentPos[2]) ? catCurrentPos[2] : 1.2
+    const catVec = new THREE.Vector3(catX, 0, catZ)
     const target = controlsRef.current.target
+
+    // Auto-recover if camera or target ever has NaN coordinates
+    if (!Number.isFinite(camera.position.x) || !Number.isFinite(target.x)) {
+      target.set(catX, 0, catZ)
+      camera.position.set(catX + 12.0, 18.0, catZ + 12.8)
+      camera.lookAt(target)
+      controlsRef.current.update()
+      return
+    }
 
     if (!isInitializedRef.current) {
       // First frame initialization: default to exact angle centered on cat
@@ -35,17 +47,14 @@ export const CameraManager = () => {
     const deltaShift = target.clone().sub(prevTarget)
     camera.position.add(deltaShift)
 
-    // Ensure orbit target never dips below the ground plane
-    if (target.y < 0) {
-      target.y = 0
+    // Safety distance recovery: if camera is ever pulled or glitched beyond visible bounds
+    const distToTarget = camera.position.distanceTo(target)
+    if (distToTarget > 52 || distToTarget < 5) {
+      camera.position.set(catVec.x + 12.0, 18.0, catVec.z + 12.8)
+      target.copy(catVec)
     }
 
     controlsRef.current.update()
-
-    // Safety floor clamp: camera must never penetrate or dip below the base terrain plane
-    if (camera.position.y < 1.2) {
-      camera.position.y = 1.2
-    }
   })
 
   return (
@@ -55,19 +64,19 @@ export const CameraManager = () => {
       target={[2.0, 0, 1.2]}
       enableDamping
       dampingFactor={0.08}
-      minDistance={6}
-      maxDistance={240}
+      enablePan={false}
+      minDistance={8}
+      maxDistance={48} // Never zoom out into the fog!
       minPolarAngle={0.08} // Prevent gimbal flipping at exact vertical zenith
       maxPolarAngle={Math.PI / 2 - 0.06} // Strict clamp (~86.5°): camera can NEVER orbit under base terrain!
-      screenSpacePanning
       mouseButtons={{
         LEFT: null, // Left click is reserved for walking/steering the cat!
-        MIDDLE: THREE.MOUSE.PAN, // Middle click drags/pans the camera across the world
-        RIGHT: THREE.MOUSE.ROTATE, // Right click rotates/orbits the camera freely
+        MIDDLE: null, // Middle click disabled to prevent camera loss
+        RIGHT: THREE.MOUSE.ROTATE, // Right click rotates/orbits the camera freely around cat
       }}
       touches={{
         ONE: null, // Touch one finger is for walking the cat
-        TWO: THREE.TOUCH.DOLLY_PAN,
+        TWO: THREE.TOUCH.DOLLY_ROTATE,
       }}
     />
   )

@@ -30,3 +30,16 @@ dist-ssr
 wayfinder-ref/
 wayfinder_ref/
 public/assets/trees/wayfinder_tree_sprites.jpg
+
+# LaTeX temp files and build caches
+*.aux
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Temporary captures and preview images
+*_preview.png
+page*.png
+donut_shot.png
+donut_preview*.png

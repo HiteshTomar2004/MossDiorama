@@ -752,6 +752,7 @@ export const ForestTrees = () => {
   }, [])
 
   const lastTreeRustleTime = useRef(0)
+  const brushedTreeIndexRef = useRef(-1)
 
   // Calculate tree and boulder positions across the 360-unit world
   // Phase-through trees: zero collision pushout so player can walk through trees and wobble them!
@@ -916,8 +917,9 @@ export const ForestTrees = () => {
     if (pos) {
       treeUniforms.catPos.value.set(pos[0], pos[1], pos[2])
 
-      // When cat is actively walking and brushes through/near a tree
-      if (isMoving && t - lastTreeRustleTime.current > 1.1) {
+      // When cat is actively walking and brushes through/near a tree: rustle ONCE on entry
+      if (isMoving) {
+        let insideTreeIdx = -1
         for (let i = 0; i < allTreePositions.length; i++) {
           const tr = allTreePositions[i]
           const dx = pos[0] - tr.x
@@ -925,11 +927,20 @@ export const ForestTrees = () => {
           // Fast bounding box check before distance calculation
           if (Math.abs(dx) < 3.2 && Math.abs(dz) < 3.2) {
             if (dx * dx + dz * dz < tr.r * tr.r) {
-              lastTreeRustleTime.current = t
-              sfx.playTreeRustle()
+              insideTreeIdx = i
               break
             }
           }
+        }
+
+        if (insideTreeIdx !== -1) {
+          if (brushedTreeIndexRef.current !== insideTreeIdx && t - lastTreeRustleTime.current > 0.8) {
+            brushedTreeIndexRef.current = insideTreeIdx
+            lastTreeRustleTime.current = t
+            sfx.playTreeRustle()
+          }
+        } else {
+          brushedTreeIndexRef.current = -1
         }
       }
     }

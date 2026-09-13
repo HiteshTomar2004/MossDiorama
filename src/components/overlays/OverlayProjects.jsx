@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { OverlayWrapper } from './OverlayWrapper'
 import { projectsData } from '../../data/projectsData'
-import { ExternalLink, Sparkles, ChevronDown, ChevronUp } from 'lucide-react'
+import { ArrowUpRight, ChevronDown, ChevronUp } from 'lucide-react'
 import { GithubIcon } from '../common/Icons'
 
 export const OverlayProjects = () => {
@@ -21,17 +21,17 @@ export const OverlayProjects = () => {
   const hasMoreProjects = filteredProjects.length > INITIAL_PROJECT_COUNT
 
   return (
-    <OverlayWrapper title="Projects" symbol="💼">
+    <OverlayWrapper title="Projects" symbol="◈">
       {/* Category filter pills */}
-      <div className="flex flex-wrap gap-2 pb-2 border-b border-spore-mint/15">
+      <div className="flex flex-wrap gap-1.5 pb-4 border-b border-white/[0.08]">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
             className={`px-3.5 py-1.5 rounded-full text-xs font-['Cinzel'] tracking-wider uppercase transition-all duration-200 cursor-pointer ${
               selectedCategory === cat
-                ? 'bg-amber-fire/20 border border-amber-fire text-amber-fire shadow-[0_0_12px_rgba(223,157,82,0.3)]'
-                : 'bg-grotto-900/60 border border-spore-mint/15 text-bone-muted hover:text-pale-bone hover:border-spore-mint/30'
+                ? 'bg-white text-neutral-950 font-semibold shadow-sm'
+                : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
             }`}
           >
             {cat}
@@ -40,38 +40,42 @@ export const OverlayProjects = () => {
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2 relative">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 relative">
         {visibleProjects.map((project) => (
-          <div
+          <article
             key={project.id}
-            className="group flex flex-col justify-between p-5 rounded-xl bg-grotto-900/70 border border-spore-mint/20 hover:border-amber-fire/60 hover:shadow-[0_0_20px_rgba(223,157,82,0.15)] transition-all duration-300"
+            className="group flex flex-col justify-between p-6 rounded-2xl bg-[#15171b] border border-white/[0.06] hover:border-white/[0.12] shadow-[0_4px_24px_rgba(0,0,0,0.4)] transition-all duration-300"
           >
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono tracking-widest text-amber-fire/90">
+            <div className="space-y-3">
+              {/* Meta Header */}
+              <div className="flex items-center justify-between text-xs font-['JetBrains_Mono']">
+                <span className="tracking-wider font-semibold text-[#d4a373]">
                   {project.rune}
                 </span>
-                <span className="text-[11px] font-['Cinzel'] tracking-wider text-spore-mint/80 uppercase">
+                <span className="text-[11px] font-['Cinzel'] uppercase tracking-wider text-neutral-400">
                   {project.category}
                 </span>
               </div>
 
-              <h3 className="font-['Cinzel'] text-lg font-bold text-pale-bone group-hover:text-amber-glow transition-colors">
+              {/* Title */}
+              <h3 className="font-['Instrument_Serif'] text-2xl sm:text-3xl tracking-tight leading-tight text-[#f4f4f6] group-hover:text-white transition-colors">
                 {project.title}
               </h3>
 
-              <p className="mt-2 text-sm text-bone-muted/90 font-['Alegreya'] leading-relaxed">
+              {/* Description */}
+              <p className="font-['Newsreader'] text-base leading-relaxed text-neutral-300">
                 {project.description}
               </p>
             </div>
 
-            <div className="mt-5 pt-4 border-t border-spore-mint/10 space-y-4">
+            {/* Card Footer: Tech Stack & Action Links */}
+            <div className="mt-6 pt-4 border-t border-white/[0.08] space-y-3.5">
               {/* Tech stack badges */}
               <div className="flex flex-wrap gap-1.5">
                 {project.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="text-[11px] font-mono px-2 py-0.5 rounded bg-grotto-950/80 border border-spore-mint/15 text-pale-bone/80"
+                    className="text-[11px] font-['JetBrains_Mono'] px-2 py-0.5 rounded bg-white/[0.06] text-neutral-300"
                   >
                     {tech}
                   </span>
@@ -79,29 +83,29 @@ export const OverlayProjects = () => {
               </div>
 
               {/* Action links */}
-              <div className="flex items-center space-x-3 text-xs font-['Cinzel'] tracking-wider">
+              <div className="flex items-center space-x-2.5 text-xs font-['Cinzel'] tracking-wider pt-1">
                 <a
                   href={project.liveUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-amber-fire/15 border border-amber-fire/40 text-amber-fire hover:bg-amber-fire hover:text-grotto-950 transition-all font-semibold"
+                  className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-neutral-100 text-neutral-950 hover:bg-white transition-all cursor-pointer"
                 >
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Inspect Demo</span>
+                  <span>Inspect</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
 
                 <a
                   href={project.githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-grotto-950 border border-spore-mint/20 text-bone-muted hover:text-pale-bone hover:border-spore-mint/50 transition-all"
+                  className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.06] text-neutral-400 hover:text-white hover:bg-white/[0.12] transition-all cursor-pointer"
                 >
                   <GithubIcon className="w-3.5 h-3.5" />
-                  <span>View Source</span>
+                  <span>Source</span>
                 </a>
               </div>
             </div>
-          </div>
+          </article>
         ))}
       </div>
 
@@ -109,13 +113,13 @@ export const OverlayProjects = () => {
       {hasMoreProjects && (
         <div className="relative pt-2">
           {!showAll ? (
-            <div className="relative -mt-24 pt-24 pb-2 flex flex-col items-center justify-end bg-gradient-to-t from-grotto-950 via-grotto-950/95 to-transparent pointer-events-none">
+            <div className="relative -mt-28 pt-28 pb-2 flex flex-col items-center justify-end bg-gradient-to-t from-[#0e0f12] via-[#0e0f12]/95 to-transparent pointer-events-none">
               <button
                 onClick={() => setShowAll(true)}
-                className="pointer-events-auto flex items-center space-x-2 px-7 py-2.5 rounded-xl bg-amber-fire/20 border border-amber-fire text-amber-fire hover:bg-amber-fire hover:text-grotto-950 font-['Instrument_Serif'] text-xl sm:text-2xl tracking-tight transition-all shadow-[0_0_15px_rgba(223,157,82,0.2)] cursor-pointer"
+                className="pointer-events-auto flex items-center space-x-2.5 px-8 py-2.5 rounded-2xl font-['Instrument_Serif'] text-xl sm:text-2xl tracking-tight bg-neutral-800/90 hover:bg-neutral-700 text-white shadow-2xl transition-all cursor-pointer"
               >
                 <span>Read More Projects</span>
-                <span className="text-xs font-mono opacity-80 ml-1">
+                <span className="text-xs font-['JetBrains_Mono'] opacity-70 ml-1">
                   (+{filteredProjects.length - INITIAL_PROJECT_COUNT})
                 </span>
                 <ChevronDown className="w-4 h-4" />
@@ -125,7 +129,7 @@ export const OverlayProjects = () => {
             <div className="pt-4 flex justify-center">
               <button
                 onClick={() => setShowAll(false)}
-                className="flex items-center space-x-2 px-5 py-2 rounded-lg bg-grotto-900 border border-spore-mint/20 text-bone-muted hover:text-pale-bone font-['Instrument_Serif'] text-lg sm:text-xl tracking-tight transition-all cursor-pointer"
+                className="flex items-center space-x-2 px-5 py-2 rounded-xl bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] text-neutral-300 hover:text-white font-['Cinzel'] text-xs uppercase tracking-wider transition-all cursor-pointer"
               >
                 <span>Show Less</span>
                 <ChevronUp className="w-3.5 h-3.5" />

@@ -46,6 +46,7 @@ export const RiverbankFrogs = () => {
       hopProgress: 0,
       isHopping: false,
       hopCooldown: Math.random() * 2.0,
+      hasInteracted: false,
     }))
   )
 
@@ -60,18 +61,23 @@ export const RiverbankFrogs = () => {
 
       st.hopCooldown = Math.max(0, st.hopCooldown - delta)
 
-      // Cat proximity trigger (within 4.8 units)
-      if (catPos && !st.isHopping && st.hopCooldown <= 0) {
+      // Enter/Exit Hysteresis: interact ONCE when cat enters (< 4.8 units), reset only when cat leaves (> 7.5 units)
+      if (catPos && !st.isHopping) {
         const dx = catPos[0] - spawn.pos[0]
         const dz = catPos[2] - spawn.pos[2]
         const distSq = dx * dx + dz * dz
 
         if (distSq < 23.0) {
-          st.isHopping = true
-          st.hopProgress = 0
-          st.frame = 1 // Puffed throat croak during hop
-          st.hopCooldown = 3.6
-          sfx.playFrogCroak()
+          if (!st.hasInteracted && st.hopCooldown <= 0) {
+            st.hasInteracted = true
+            st.isHopping = true
+            st.hopProgress = 0
+            st.frame = 1 // Puffed throat croak during hop
+            st.hopCooldown = 1.0
+            sfx.playFrogCroak()
+          }
+        } else if (distSq > 56.25) {
+          st.hasInteracted = false
         }
       }
 

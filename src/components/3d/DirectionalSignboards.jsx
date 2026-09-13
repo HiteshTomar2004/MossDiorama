@@ -77,7 +77,7 @@ const SingleSignboard = ({ cfg, texture }) => {
   const handleClick = (e) => {
     e.stopPropagation()
     sfx.playWood()
-    setCatTarget(cfg.target[0], cfg.target[2])
+    setCatTarget([cfg.target[0], 0, cfg.target[2]])
     setActiveDistrict(cfg.id)
   }
 
