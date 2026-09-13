@@ -5,7 +5,7 @@ import { Download, Briefcase, GraduationCap, Compass, MapPin } from 'lucide-reac
 
 export const OverlayResume = () => {
   return (
-    <OverlayWrapper title="Traveler's Pavilion & Chronicle" symbol="📜">
+    <OverlayWrapper title="Experience & Qualifications" symbol="📜">
       {/* Bio Header */}
       <div className="p-6 rounded-xl bg-grotto-900/60 border border-spore-mint/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -30,7 +30,7 @@ export const OverlayResume = () => {
           className="self-start sm:self-center flex items-center space-x-2 px-4 py-2.5 rounded-lg bg-amber-fire/20 border border-amber-fire text-amber-fire hover:bg-amber-fire hover:text-grotto-950 font-['Cinzel'] text-xs font-bold tracking-widest uppercase transition-all shadow-[0_0_15px_rgba(223,157,82,0.2)] cursor-pointer"
         >
           <Download className="w-4 h-4" />
-          <span>Download Scroll (PDF)</span>
+          <span>Download CV (PDF)</span>
         </a>
       </div>
 
@@ -38,7 +38,7 @@ export const OverlayResume = () => {
       <div className="p-5 rounded-xl bg-grotto-950/60 border border-spore-mint/15">
         <h4 className="font-['Cinzel'] text-xs uppercase tracking-[0.2em] text-spore-mint mb-2 flex items-center space-x-2">
           <Compass className="w-3.5 h-3.5" />
-          <span>The Traveler’s Creed</span>
+          <span>About</span>
         </h4>
         <p className="text-sm font-['Alegreya'] text-pale-bone/90 leading-relaxed italic">
           "{resumeData.about}"
@@ -49,7 +49,7 @@ export const OverlayResume = () => {
       <div>
         <h4 className="font-['Cinzel'] text-sm uppercase tracking-[0.2em] text-amber-fire mb-4 flex items-center space-x-2">
           <Briefcase className="w-4 h-4" />
-          <span>Expeditions & Milestones</span>
+          <span>Professional Experience</span>
         </h4>
 
         <div className="space-y-6 relative border-l border-spore-mint/20 ml-3 pl-6">
@@ -84,10 +84,10 @@ export const OverlayResume = () => {
         </div>
       </div>
 
-      {/* The Botanical Skill Garden */}
+      {/* Technical Skills */}
       <div>
         <h4 className="font-['Cinzel'] text-sm uppercase tracking-[0.2em] text-spore-mint mb-4 flex items-center space-x-2">
-          <span>◈ The Botanical Skill Garden ◈</span>
+          <span>◈ Technical Skills ◈</span>
         </h4>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -115,7 +115,7 @@ export const OverlayResume = () => {
       <div>
         <h4 className="font-['Cinzel'] text-sm uppercase tracking-[0.2em] text-bone-muted mb-3 flex items-center space-x-2">
           <GraduationCap className="w-4 h-4 text-amber-fire" />
-          <span>Academia & Honors</span>
+          <span>Education</span>
         </h4>
 
         {resumeData.education.map((edu, idx) => (
@@ -126,7 +126,14 @@ export const OverlayResume = () => {
               </h5>
               <p className="text-xs text-bone-muted mt-0.5">{edu.institution}</p>
             </div>
-            <span className="text-xs font-mono text-amber-fire mt-1 sm:mt-0">{edu.period}</span>
+            <div className="flex flex-col sm:items-end text-xs font-mono mt-1 sm:mt-0">
+              {edu.period && (
+                <span className="text-bone-muted leading-tight">{edu.period}</span>
+              )}
+              {edu.score && (
+                <span className="text-amber-fire font-medium leading-tight">{edu.score}</span>
+              )}
+            </div>
           </div>
         ))}
       </div>

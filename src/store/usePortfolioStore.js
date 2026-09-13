@@ -7,7 +7,7 @@ export const DISTRICT_COORDINATES = {
     z: 0,
     stopX: 1.8,
     stopZ: 3.6,
-    name: 'The Great Hearth',
+    name: 'Home',
     symbol: '🔥',
   },
   projects: {
@@ -16,8 +16,8 @@ export const DISTRICT_COORDINATES = {
     z: -98,
     stopX: 28.0,
     stopZ: -92.5,
-    name: 'Runic Monolith',
-    symbol: '⚒',
+    name: 'Projects',
+    symbol: '💼',
   },
   blog: {
     x: -108,
@@ -25,8 +25,8 @@ export const DISTRICT_COORDINATES = {
     z: -34,
     stopX: -98.2,
     stopZ: -33.5,
-    name: 'Bioluminescent Grove',
-    symbol: '🍄',
+    name: 'Notes',
+    symbol: '📝',
   },
   resume: {
     x: -100,
@@ -34,7 +34,7 @@ export const DISTRICT_COORDINATES = {
     z: 80,
     stopX: -95.5,
     stopZ: 76.8,
-    name: 'Whispering Well',
+    name: 'Resume',
     symbol: '📜',
   },
   contact: {
@@ -43,8 +43,8 @@ export const DISTRICT_COORDINATES = {
     z: 88,
     stopX: 86.8,
     stopZ: 93.8,
-    name: "Traveler's Cabin",
-    symbol: '🛖',
+    name: 'Contact',
+    symbol: '✉',
   },
 }
 

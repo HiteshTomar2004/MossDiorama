@@ -25,3 +25,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Reference directories and unused assets
+wayfinder-ref/
+wayfinder_ref/
+public/assets/trees/wayfinder_tree_sprites.jpg

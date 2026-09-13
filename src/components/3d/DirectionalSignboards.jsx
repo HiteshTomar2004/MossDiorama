@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react'
-import { Billboard, Html, Sparkles } from '@react-three/drei'
+import React, { useMemo } from 'react'
+import { Billboard } from '@react-three/drei'
 import * as THREE from 'three'
 import { usePortfolioStore } from '../../store/usePortfolioStore'
 import { sfx } from '../../utils/sfxPlayer'
@@ -34,13 +34,13 @@ const SIGN_CONFIGS = [
   },
   {
     id: 'blog',
-    name: 'Blog',
+    name: 'Notes',
     symbol: '🍄',
     pos: [-9.8, 0, -8.3],
     texturePath: '/assets/props/sign_blog.png',
     arrowDir: 'left',
     target: [-98.2, 0, -33.5],
-    description: 'Mushroom Grove',
+    description: 'Technical Notes',
     shadowScale: [1.35, 0.85, 1],
     stoneColors: ['#544e48', '#423d38', '#615a52'],
   },
@@ -71,7 +71,6 @@ const SIGN_CONFIGS = [
 ]
 
 const SingleSignboard = ({ cfg, texture }) => {
-  const [hovered, setHovered] = useState(false)
   const setCatTarget = usePortfolioStore((s) => s.setCatTarget)
   const setActiveDistrict = usePortfolioStore((s) => s.setActiveDistrict)
 
@@ -98,11 +97,9 @@ const SingleSignboard = ({ cfg, texture }) => {
       onClick={handleClick}
       onPointerOver={(e) => {
         e.stopPropagation()
-        setHovered(true)
         document.body.style.cursor = 'pointer'
       }}
       onPointerOut={() => {
-        setHovered(false)
         document.body.style.cursor = 'auto'
       }}
     >
@@ -147,7 +144,7 @@ const SingleSignboard = ({ cfg, texture }) => {
         position={[0, height * 0.5, 0]}
       >
         <mesh
-          scale={[hovered ? width * 1.05 : width, hovered ? height * 1.05 : height, 1]}
+          scale={[width, height, 1]}
           renderOrder={14}
         >
           <planeGeometry args={[1, 1]} />
@@ -160,34 +157,6 @@ const SingleSignboard = ({ cfg, texture }) => {
           />
         </mesh>
       </Billboard>
-
-      {/* 4. Golden Firefly Sparkles on Hover */}
-      {hovered && (
-        <Sparkles
-          count={8}
-          scale={[2.0, 1.8, 2.0]}
-          position={[0, 1.4, 0]}
-          size={2.5}
-          speed={1.2}
-          color="#f59e0b"
-        />
-      )}
-
-      {/* 5. Floating Wayfinder Badge on Hover */}
-      {hovered && (
-        <Html position={[0, 2.75, 0]} center distanceFactor={26}>
-          <div className="transition-all duration-300 pointer-events-none select-none flex items-center gap-1.5 px-3 py-1 rounded-full silksong-card border border-amber-fire/60 shadow-xl backdrop-blur-md scale-110 opacity-100 -translate-y-1">
-            <span className="text-sm">{cfg.symbol}</span>
-            <span className="font-['Cinzel'] text-xs font-bold text-pale-bone tracking-wider uppercase">
-              {cfg.name}
-            </span>
-            <span className="text-[10px] font-['Cinzel'] text-amber-fire/80 tracking-normal">
-              · {cfg.description}
-            </span>
-            <span className="text-amber-fire text-xs font-mono font-bold ml-0.5">➔</span>
-          </div>
-        </Html>
-      )}
     </group>
   )
 }

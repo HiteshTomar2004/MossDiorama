@@ -7,14 +7,14 @@ export const OverlayBlog = () => {
   const [selectedPost, setSelectedPost] = useState(null)
 
   return (
-    <OverlayWrapper title="Bioluminescent Grove & Field Notes" symbol="🍄">
+    <OverlayWrapper title="Notes" symbol="📝">
       {selectedPost ? (
         <div className="space-y-6">
           <button
             onClick={() => setSelectedPost(null)}
             className="flex items-center space-x-2 text-xs font-['Cinzel'] tracking-wider text-amber-fire hover:text-amber-glow uppercase cursor-pointer"
           >
-            <span>← Back to Grove Notes</span>
+            <span>← Back to Notes</span>
           </button>
 
           <div className="border-b border-spore-mint/20 pb-4">
@@ -40,7 +40,7 @@ export const OverlayBlog = () => {
       ) : (
         <div className="space-y-5">
           <p className="text-xs text-bone-muted font-['Cinzel'] tracking-widest uppercase">
-            ◈ Fragments of Craft, Shaders & Design Philosophy ◈
+            ◈ Technical Notes & Engineering Articles ◈
           </p>
 
           <div className="grid grid-cols-1 gap-4">
@@ -84,7 +84,7 @@ export const OverlayBlog = () => {
                   </div>
 
                   <span className="flex items-center space-x-1 text-xs font-['Cinzel'] tracking-wider text-amber-fire group-hover:translate-x-1 transition-transform">
-                    <span>Read Tablet</span>
+                    <span>Read Note</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </span>
                 </div>

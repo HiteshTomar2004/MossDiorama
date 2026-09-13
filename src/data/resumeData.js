@@ -1,13 +1,13 @@
 export const resumeData = {
   name: 'Hitesh Tomar',
   title: 'B.Tech in AI & ML · Full-Stack & Applied AI Engineer',
-  tagline: 'Engineering edge-intelligent TinyML wearables, multi-agent AI systems, and resilient full-stack platforms.',
-  location: 'Greater Delhi Area, India',
+  tagline: 'Edge AI, data pipelines, and resilient full-stack systems.',
+  location: 'Delhi, India',
   email: 'hitesh28tomar@gmail.com',
   github: 'https://github.com/HiteshTomar2004',
   linkedin: 'https://www.linkedin.com/in/hitesh-tomar-b31059344',
 
-  about: `I am an AI & Machine Learning undergraduate and engineer passionate about building applied AI systems, TinyML edge wearables, multi-agent architectures, and data-driven platforms. From engineering on-device quantized neural networks for disaster-response personnel at AICTE IDEA Lab to designing digital forensics graph intelligence and high-throughput backend systems, I focus on solving mission-critical real-world challenges with rigorous engineering and intuitive user interfaces.`,
+  about: `I'm an engineer and AI/ML undergrad based in Delhi. Most of my work sits at the intersection of edge computing, data pipelines, and backend systems—from squeezing quantized neural nets onto microcontrollers for disaster response wearables to processing satellite imagery and designing scalable APIs. I care about low latency, clean architecture, and building things that actually work under real-world constraints.`,
 
   experience: [
     {
@@ -37,7 +37,7 @@ export const resumeData = {
       ]
     },
     {
-      period: 'Sept 2025 — Present',
+      period: 'Sept 2025 — Sept 2026',
       role: 'Technical Team Member',
       company: 'ACTS-EDC',
       location: 'Delhi, India',
@@ -84,17 +84,18 @@ export const resumeData = {
     {
       degree: 'Bachelor of Technology (B.Tech.) in Artificial Intelligence & Machine Learning',
       institution: 'Guru Gobind Singh Indraprastha University (GGSIPU)',
-      period: '2024 — 2028'
+      period: '2024 — 2028',
+      score: '8.33 CGPA'
     },
     {
       degree: 'Senior Secondary Certificate (12th Standard)',
       institution: 'M.M. Public School - India',
-      period: 'Completed'
+      score: '79.6%'
     },
     {
       degree: 'Secondary School Certificate (10th Standard)',
       institution: 'Mother Divine Public School - India',
-      period: 'Completed'
+      score: '90.4%'
     }
   ],
 

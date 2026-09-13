@@ -29,7 +29,9 @@ export function App() {
       className={`relative min-h-screen transition-colors duration-300 ${
         isLight2D
           ? 'bg-[#fcfbf9] text-neutral-900 font-["Newsreader"] selection:bg-neutral-900 selection:text-white'
-          : 'bg-[#0a0e0c] text-[#f0ede6] font-["Newsreader"] selection:bg-[#c89658]/30 selection:text-[#ffd699]'
+          : is3DMode
+          ? 'bg-[#0a0e0c] text-[#f0ede6] font-["Newsreader"] selection:bg-[#c89658]/30 selection:text-[#ffd699]'
+          : 'bg-[#0e0f12] text-[#f4f4f6] font-["Newsreader"] selection:bg-neutral-700 selection:text-white'
       }`}
     >
       {/* HUD Navigation Header */}

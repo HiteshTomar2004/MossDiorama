@@ -54,20 +54,20 @@ export const NavigationHeader = () => {
     }
   }
 
-  // Card & button theme classes
+  // Card & button theme classes with modern clean elevation
   const cardClass = isLight2D
-    ? 'bg-white/90 backdrop-blur-md border border-neutral-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.05)] text-neutral-900'
-    : 'bg-[#0f1412]/90 backdrop-blur-md border border-[#222e28] shadow-[0_6px_24px_rgba(0,0,0,0.4)] text-[#f0ede6]'
+    ? 'bg-white/95 backdrop-blur-md border border-neutral-200/80 shadow-sm text-neutral-900'
+    : 'bg-[#121316]/95 backdrop-blur-md border border-white/[0.08] shadow-lg text-[#f4f4f6]'
 
   const buttonHoverClass = isLight2D
-    ? 'border-neutral-200 hover:border-neutral-400 bg-neutral-100/80 hover:bg-neutral-200/80 text-neutral-700'
-    : 'border-[#222e28] hover:border-[#384840] bg-[#141b17] hover:bg-[#1a231e] text-[#a4b2aa] hover:text-[#f0ede6]'
+    ? 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'
+    : 'bg-white/[0.06] hover:bg-white/[0.12] text-neutral-400 hover:text-neutral-100'
 
   const navLabels = {
-    hearth: 'Hearth',
+    hearth: 'Home',
     projects: 'Projects',
     resume: 'Resume',
-    blog: 'Blog',
+    blog: 'Notes',
     contact: 'Contact'
   }
 
@@ -77,13 +77,13 @@ export const NavigationHeader = () => {
         {/* Brand Identity / Home Anchor */}
         <div
           onClick={() => handleNavClick('hearth')}
-          className={`pointer-events-auto flex items-center space-x-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl border transition-all duration-300 cursor-pointer group shadow-sm ${cardClass}`}
+          className={`pointer-events-auto flex items-center space-x-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl border transition-all duration-300 cursor-pointer group hover:-translate-y-0.5 ${cardClass}`}
         >
           <div
             className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-transform group-hover:scale-105 ${
               isLight2D
                 ? 'bg-neutral-900 text-amber-500 border border-neutral-700'
-                : 'bg-[#c89658]/20 border border-[#c89658]/50 text-[#e4b77d]'
+                : 'bg-neutral-800/80 border border-neutral-700/70 text-amber-400'
             }`}
           >
             <Flame className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
@@ -91,24 +91,24 @@ export const NavigationHeader = () => {
           <div className="flex flex-col">
             <span
               className={`font-['Cinzel_Decorative'] text-xs sm:text-sm font-bold tracking-[0.2em] uppercase transition-colors ${
-                isLight2D ? 'text-neutral-900' : 'text-[#f0ede6]'
+                isLight2D ? 'text-neutral-900' : 'text-[#f4f4f6]'
               }`}
             >
-              The Moss Grotto
+              Hitesh Tomar
             </span>
             <span
               className={`font-['Cinzel'] text-[11px] sm:text-xs tracking-wider ${
-                isLight2D ? 'text-neutral-500 font-semibold' : 'text-[#c89658] font-medium'
+                isLight2D ? 'text-neutral-500 font-semibold' : 'text-neutral-400 font-medium'
               }`}
             >
-              Hitesh · Portfolio
+              Full-Stack & Applied AI
             </span>
           </div>
         </div>
 
-        {/* Center District Fast-Travel / Section Jump Hub (Desktop) - Large, No Emojis */}
+        {/* Center District Fast-Travel / Section Jump Hub (Desktop) */}
         <nav
-          className={`pointer-events-auto hidden md:flex items-center space-x-1.5 px-3 py-2 rounded-full border transition-all duration-300 ${cardClass}`}
+          className={`pointer-events-auto hidden md:flex items-center space-x-1 px-2.5 py-1.5 rounded-full border transition-all duration-300 ${cardClass}`}
         >
           {Object.entries(DISTRICT_COORDINATES).map(([key, item]) => {
             const isActive = activeDistrict === key
@@ -120,11 +120,11 @@ export const NavigationHeader = () => {
                 className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-['Cinzel'] tracking-widest uppercase transition-all duration-200 cursor-pointer ${
                   isActive
                     ? isLight2D
-                      ? 'bg-neutral-900 text-white font-bold shadow-sm'
-                      : 'bg-[#233129] border border-[#3e5648] text-[#f0ede6] font-bold shadow-[0_0_12px_rgba(35,49,41,0.6)]'
+                      ? 'bg-neutral-900 text-white font-semibold shadow-sm'
+                      : 'bg-white/[0.12] text-white font-semibold'
                     : isLight2D
                     ? 'text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100 font-medium'
-                    : 'text-[#8e9f95] hover:text-[#f0ede6] hover:bg-[#18211c] font-medium'
+                    : 'text-neutral-400 hover:text-white hover:bg-white/[0.06] font-medium'
                 }`}
               >
                 <span>{label}</span>
@@ -134,24 +134,24 @@ export const NavigationHeader = () => {
         </nav>
 
         {/* Right Controls: 2D Theme Toggle, Audio, Mode Switch & Mobile Hamburger */}
-        <div className="pointer-events-auto flex items-center space-x-2 sm:space-x-3">
+        <div className="pointer-events-auto flex items-center space-x-2 sm:space-x-2.5">
           {/* 2D Dark / Light Mode Switch (Only visible in 2D mode) */}
           {!is3DMode && (
             <button
               onClick={toggle2DDarkMode}
-              className={`p-2.5 sm:px-4 sm:py-2.5 rounded-2xl border transition-all duration-200 cursor-pointer flex items-center space-x-2 ${
+              className={`p-2 sm:px-3 sm:py-2 rounded-xl transition-all duration-200 cursor-pointer flex items-center space-x-1.5 ${
                 isLight2D
-                  ? 'border-neutral-200 bg-white hover:bg-neutral-100 text-neutral-800 shadow-sm'
-                  : 'border-[#293730] bg-[#141b17] hover:bg-[#1c2620] text-[#c2d1c8] shadow-md'
+                  ? 'bg-neutral-100 hover:bg-neutral-200 text-neutral-800'
+                  : 'bg-white/[0.06] hover:bg-white/[0.12] text-neutral-300 hover:text-white'
               }`}
-              title={is2DDarkMode ? 'Switch to White-Gray Light Mode' : 'Switch to Slate Dark Mode'}
+              title={is2DDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
               {is2DDarkMode ? (
-                <Sun className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#e4b77d]" />
+                <Sun className="w-4 h-4 text-amber-400" />
               ) : (
-                <Moon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-neutral-700" />
+                <Moon className="w-4 h-4 text-neutral-700" />
               )}
-              <span className="hidden lg:inline text-xs sm:text-sm font-['Cinzel'] tracking-wider uppercase font-semibold">
+              <span className="hidden lg:inline text-xs font-['Cinzel'] tracking-wider uppercase font-semibold">
                 {is2DDarkMode ? 'Dark' : 'Light'}
               </span>
             </button>
@@ -160,37 +160,39 @@ export const NavigationHeader = () => {
           {/* Audio Toggle */}
           <button
             onClick={toggleAudio}
-            className={`p-2.5 sm:px-4 sm:py-2.5 rounded-2xl border transition-all duration-200 cursor-pointer flex items-center space-x-2 ${
+            className={`p-2 sm:px-3 sm:py-2 rounded-xl transition-all duration-200 cursor-pointer flex items-center space-x-1.5 ${
               audioPlaying
                 ? isLight2D
-                  ? 'border-neutral-900 text-neutral-900 bg-neutral-100 font-bold'
-                  : 'border-[#c89658]/60 text-[#e4b77d] bg-[#c89658]/15'
-                : buttonHoverClass
+                  ? 'bg-neutral-200 text-neutral-900 font-semibold'
+                  : 'bg-amber-400/15 text-amber-400 font-semibold'
+                : isLight2D
+                ? 'bg-neutral-100 hover:bg-neutral-200 text-neutral-600'
+                : 'bg-white/[0.06] hover:bg-white/[0.12] text-neutral-400 hover:text-neutral-200'
             }`}
             title={audioPlaying ? 'Mute Atmosphere' : 'Play Ambient Atmosphere'}
           >
             {audioPlaying ? (
-              <Volume2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-amber-500 animate-pulse" />
+              <Volume2 className="w-4 h-4 text-amber-400 animate-pulse" />
             ) : (
-              <VolumeX className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+              <VolumeX className="w-4 h-4" />
             )}
-            <span className="hidden sm:inline text-xs sm:text-sm font-['Cinzel'] tracking-wider uppercase font-semibold">
+            <span className="hidden sm:inline text-xs font-['Cinzel'] tracking-wider uppercase font-semibold">
               {audioPlaying ? 'Sound' : 'Mute'}
             </span>
           </button>
 
-          {/* 2D / 3D Mode Switch */}
+          {/* 2D / 3D Mode Switch (Primary CTA) */}
           <button
             onClick={toggle3DMode}
-            className={`p-2.5 sm:px-4.5 sm:py-2.5 rounded-2xl border transition-all duration-200 cursor-pointer flex items-center space-x-2 shadow-sm ${
+            className={`px-3 sm:px-4 py-2 rounded-xl transition-all duration-200 cursor-pointer flex items-center space-x-1.5 font-semibold text-xs sm:text-sm font-['Cinzel'] tracking-wider uppercase shadow-sm ${
               isLight2D
-                ? 'border-neutral-900 bg-neutral-900 text-white hover:bg-neutral-800'
-                : 'border-[#384840] bg-[#1a241f] text-[#f0ede6] hover:bg-[#233129]'
+                ? 'bg-neutral-900 text-white hover:bg-neutral-800'
+                : 'bg-neutral-100 text-neutral-950 hover:bg-white'
             }`}
             title="Toggle between 3D Diorama and 2D Reading View"
           >
-            {is3DMode ? <Eye className="w-4 h-4 sm:w-4.5 sm:h-4.5" /> : <Box className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#e4b77d]" />}
-            <span className="hidden sm:inline text-xs sm:text-sm font-['Cinzel'] tracking-wider uppercase font-bold">
+            {is3DMode ? <Eye className="w-4 h-4" /> : <Box className="w-4 h-4 text-amber-600 dark:text-amber-600" />}
+            <span className="hidden sm:inline">
               {is3DMode ? '3D Realm' : '2D View'}
             </span>
           </button>
@@ -198,7 +200,7 @@ export const NavigationHeader = () => {
           {/* Mobile Hamburger Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`md:hidden p-2.5 rounded-2xl border transition-all duration-200 cursor-pointer ${buttonHoverClass}`}
+            className={`md:hidden p-2 rounded-xl transition-all duration-200 cursor-pointer ${buttonHoverClass}`}
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -206,7 +208,7 @@ export const NavigationHeader = () => {
         </div>
       </header>
 
-      {/* Mobile Navigation Drawer - Enlarged, No Emojis */}
+      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div
           onClick={() => setMobileMenuOpen(false)}
@@ -217,15 +219,15 @@ export const NavigationHeader = () => {
             className={`w-full rounded-2xl p-5 border space-y-3 shadow-2xl ${
               isLight2D
                 ? 'bg-white border-neutral-200 text-neutral-900'
-                : 'bg-[#0f1412] border-[#222e28] text-[#f0ede6]'
+                : 'bg-[#121316] border-white/[0.08] text-[#f4f4f6]'
             }`}
           >
-            <div className="flex items-center justify-between pb-3 border-b border-neutral-200 dark:border-[#222e28] text-xs font-['Cinzel'] tracking-widest uppercase">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-200 dark:border-white/[0.08] text-xs font-['Cinzel'] tracking-widest uppercase">
               <span className="font-bold">Navigation</span>
-              <span className="text-[11px] text-neutral-500 dark:text-[#8e9f95]">Select Sanctuary</span>
+              <span className="text-[11px] text-neutral-500 dark:text-neutral-400">Select Sanctuary</span>
             </div>
 
-            <div className="grid grid-cols-1 gap-2 pt-1">
+            <div className="grid grid-cols-1 gap-1.5 pt-1">
               {Object.entries(DISTRICT_COORDINATES).map(([key, item]) => {
                 const isActive = activeDistrict === key
                 const label = navLabels[key] || item.name
@@ -237,14 +239,14 @@ export const NavigationHeader = () => {
                       isActive
                         ? isLight2D
                           ? 'bg-neutral-900 text-white font-bold'
-                          : 'bg-[#233129] border border-[#3e5648] text-[#f0ede6] font-bold'
+                          : 'bg-white/[0.12] text-white font-bold'
                         : isLight2D
                         ? 'hover:bg-neutral-100 text-neutral-700'
-                        : 'hover:bg-[#18211c] text-[#a4b2aa]'
+                        : 'hover:bg-white/[0.06] text-neutral-400 hover:text-white'
                     }`}
                   >
                     <span className="font-semibold">{label}</span>
-                    <span className="text-xs text-neutral-400 dark:text-[#52645a]">◈</span>
+                    <span className="text-xs text-neutral-400 dark:text-neutral-500">◈</span>
                   </button>
                 )
               })}
